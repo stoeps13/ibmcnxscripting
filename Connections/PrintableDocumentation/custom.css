@@ -1,0 +1,60 @@
+   body{counter-reset: h1counter}
+   h1{counter-reset: h2counter}
+   h2{counter-reset: h3counter}
+   h3{counter-reset: h4counter}
+   h4{counter-reset: h5counter}
+   h5{counter-reset: h6counter}
+/*h1:before {
+    display: block;
+    text-align: center;
+    white-space: pre;
+    content: "Chapter:"
+}*/
+
+   h1:before{
+     counter-increment: h1counter;
+     content: counter(h1counter) " ";
+   }
+   h2:before{
+     counter-increment: h2counter;
+     content: counter(h1counter) "." counter(h2counter) " ";
+   }
+   h3:before{
+     counter-increment: h3counter;
+     content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) " ";
+   }
+   h4:before{
+     counter-increment: h4counter;
+     content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) "." counter(h4counter) " ";
+   }
+   h5:before{
+     counter-increment: h5counter;
+     content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) "." counter(h4counter) "." counter(h5counter) " ";
+   }
+
+   h6:before{
+     counter-increment: h6counter;
+     content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) "." counter(h4counter) "." counter(h5counter) "." counter(h6counter) " ";
+   }
+   body{font-family:sans-serif;
+   max-width:1024px;
+   min-width:640px;
+   left:auto;
+   right:auto;
+   font-size:12px;
+   }
+
+p {
+    font-size:11px;
+    line-height:110%;
+}
+
+code,kbd {
+#    background-color:lightyellow;
+    margin:10px;
+}
+h1,h2,h3,h4,h5,h6{
+    color:darkblue;
+    font-weight:bold;
+    font-size:110%;
+}
