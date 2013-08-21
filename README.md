@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Scripting IBM Connections
 =========================
 
@@ -73,3 +74,11 @@ If you want to give something back, you can put your scripts here too, or go to 
 
 
 
+=======
+ibmcnxscripting
+===============
+
+Collection of useful scripts for WebSphere, DB2 and Connections admins
+
+I redesign the repository, if you need the old version goto: https://github.com/stoeps13/ibmcnxscripting.old
+>>>>>>> 9313597076458d9dca2c3ec1a65fb7ea8db0017c
