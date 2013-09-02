@@ -1,0 +1,28 @@
+/* ==|== print styles =======================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+  * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; } /* Black prints faster: h5bp.com/s */
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; } /* Don't show links for images, or javascript/internal links */
+  thead { display: table-header-group; } /* h5bp.com/t */
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 1.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+
+  /* Impress.js specific */
+  .fallback-message { display: none; }
+  @page land {size: landscape;}
+  .step { page-break-inside: avoid; page-break-after: always; border: none; margin-top: 100px; }
+  .step img { max-height: 100%; }
+  .slide, .slidenobg { width:18cm; padding-left:2cm; margin-left:2cm; margin-bottom:30px; }
+
+  /* plus some more step specific styles of your own
+  #htop2 { display: none }
+   */
+        .slide{ display: block; page-break-before: always; }
