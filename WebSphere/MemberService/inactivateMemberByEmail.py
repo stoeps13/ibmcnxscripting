@@ -12,63 +12,53 @@ MAILADDRESS = sys.argv[0]
 print "Syncing MemberService for " + MAILADDRESS
 
 # Loading Connections Administration Commands
-execfile("activitiesAdmin.py")
-execfile("blogsAdmin.py")
-execfile("communitiesAdmin.py")
-execfile("dogearAdmin.py")
-execfile("filesAdmin.py")
-execfile("forumsAdmin.py")
-execfile("homepageAdmin.py")
-execfile("newsAdmin.py")
-execfile("profilesAdmin.py")
-execfile("wikisAdmin.py")
-execfile("profilesAdmin.py")
+execfile( "loadAll.py" )
 
 try:
    print "Inactivate Activities"
-   ActivitiesMemberService.inactivateMemberByEmail(MAILADDRESS)
+   ActivitiesMemberService.inactivateMemberByEmail( MAILADDRESS )
 except:
    print 'No user with Email' + MAILADDRESS + ' found'
 
 try:
    print "Inactivate Blogs"
-   BlogsMemberService.inactivateMemberByEmail(MAILADDRESS)
+   BlogsMemberService.inactivateMemberByEmail( MAILADDRESS )
 except:
    print 'No user with Email' + MAILADDRESS + ' found'
 
 try:
    print "Inactivate Communities"
-   CommunitiesMemberService.inactivateMemberByEmail(MAILADDRESS)
+   CommunitiesMemberService.inactivateMemberByEmail( MAILADDRESS )
 except:
    print 'No user with Email' + MAILADDRESS + ' found'
 
 try:
    print "Inactivate Dogear"
-   DogearMemberService.inactivateMemberByEmail(MAILADDRESS)
+   DogearMemberService.inactivateMemberByEmail( MAILADDRESS )
 except:
    print 'No user with Email' + MAILADDRESS + ' found'
 
 try:
    print "Inactivate Files"
-   FilesMemberService.inactivateMemberByEmail(MAILADDRESS)
+   FilesMemberService.inactivateMemberByEmail( MAILADDRESS )
 except:
    print 'No user with Email' + MAILADDRESS + ' found'
 
 try:
    print "Inactivate Forums"
-   ForumsMemberService.inactivateMemberByEmail(MAILADDRESS)
+   ForumsMemberService.inactivateMemberByEmail( MAILADDRESS )
 except:
    print 'No user with Email' + MAILADDRESS + ' found'
 
 try:
    print "Inactivate News, Search, Homepage"
-   NewsMemberService.inactivateMemberByEmail(MAILADDRESS)
+   NewsMemberService.inactivateMemberByEmail( MAILADDRESS )
 except:
    print 'No user with Email' + MAILADDRESS + ' found'
 
 try:
    print "Inactivate Wikis"
-   WikisMemberService.inactivateMemberByEmail(MAILADDRESS)
+   WikisMemberService.inactivateMemberByEmail( MAILADDRESS )
 except:
    print 'No user with Email' + MAILADDRESS + ' found'
 

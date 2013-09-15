@@ -14,8 +14,7 @@ LOGINID = sys.argv[1]
 print "Updating User: " + MAILADDRESS
 
 # Loading Connections Administration Commands
-execfile("profilesAdmin.py")
+execfile( "profilesAdmin.py" )
 
-ProfilesService.updateUser(MAILADDRESS, loginId=LOGINID)
-
-ProfilesService.publishUserData(MAILADDRESS)
+ProfilesService.updateUser( MAILADDRESS, loginId = LOGINID )
+ProfilesService.publishUserData( MAILADDRESS )

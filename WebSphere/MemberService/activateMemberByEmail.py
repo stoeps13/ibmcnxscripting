@@ -12,9 +12,8 @@ MAILADDRESS = sys.argv[0]
 print "Activating User: " + MAILADDRESS
 
 # Loading Connections Administration Commands
-execfile("profilesAdmin.py")
+execfile( "profilesAdmin.py" )
 
-ProfilesService.activateUserByUserId(MAILADDRESS)
-
-ProfilesService.publishUserData(MAILADDRESS)
+ProfilesService.activateUserByUserId( MAILADDRESS )
+ProfilesService.publishUserData( MAILADDRESS )
 

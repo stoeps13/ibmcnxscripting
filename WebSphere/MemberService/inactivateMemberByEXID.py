@@ -11,68 +11,59 @@ EXID = sys.argv[0]
 print "Syncing MemberService for " + EXID
 
 # Loading Connections Administration Commands
-execfile("activitiesAdmin.py")
-execfile("blogsAdmin.py")
-execfile("communitiesAdmin.py")
-execfile("dogearAdmin.py")
-execfile("filesAdmin.py")
-execfile("forumsAdmin.py")
-execfile("homepageAdmin.py")
-execfile("newsAdmin.py")
-execfile("profilesAdmin.py")
-execfile("wikisAdmin.py")
+execfile( "loadAll.py" )
 
 try:
    print "Sync Activities"
-   ActivitiesMemberService.inactivateMemberByExtId(EXID)
+   ActivitiesMemberService.inactivateMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Blogs"
-   BlogsMemberService.inactivateMemberByExtId(EXID)
+   BlogsMemberService.inactivateMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Communities"
-   CommunitiesMemberService.inactivateMemberByExtId(EXID)
+   CommunitiesMemberService.inactivateMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Dogear"
-   DogearMemberService.inactivateMemberByExtId(EXID)
+   DogearMemberService.inactivateMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Files"
-   FilesMemberService.inactivateMemberByExtId(EXID)
+   FilesMemberService.inactivateMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Forums"
-   ForumsMemberService.inactivateMemberByExtId(EXID)
+   ForumsMemberService.inactivateMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync News, Search, Homepage"
-   NewsMemberService.inactivateMemberByExtId(EXID)
+   NewsMemberService.inactivateMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Wikis"
-   WikisMemberService.inactivateMemberByExtId(EXID)
+   WikisMemberService.inactivateMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Inactivate Profiles"
-   ProfilesService.inactivateUser(EXID)
+   ProfilesService.inactivateUser( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 

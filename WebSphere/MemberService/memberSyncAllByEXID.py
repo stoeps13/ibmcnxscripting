@@ -9,42 +9,33 @@
 EmailMatch = sys.argv[0]
 
 # Loading Connections Administration Commands
-execfile("activitiesAdmin.py")
-execfile("blogsAdmin.py")
-execfile("communitiesAdmin.py")
-execfile("dogearAdmin.py")
-execfile("filesAdmin.py")
-execfile("forumsAdmin.py")
-execfile("homepageAdmin.py")
-execfile("newsAdmin.py")
-execfile("profilesAdmin.py")
-execfile("wikisAdmin.py")
+execfile( "loadAll.py" )
 
-apps = ['Activities','Blogs','Communities','Dogear','Files','Forums','News','Wikis']
+apps = ['Activities', 'Blogs', 'Communities', 'Dogear', 'Files', 'Forums', 'News', 'Wikis']
 
-def memService(appname,EmailMatch):
-    if("Activities" == appname) :
+def memService( appname, EmailMatch ):
+    if( "Activities" == appname ) :
         print "\tActivitiesMemberService.syncAllMembersByExtId"
         ActivitiesMemberService.syncAllMembersByExtId( {"updateOnEmailLoginMatch": EmailMatch } )
-    elif("Blogs" == appname) :
+    elif( "Blogs" == appname ) :
         print "\tBlogsMemberService.syncAllMembersByExtId"
         BlogsMemberService.syncAllMembersByExtId( {"updateOnEmailLoginMatch": EmailMatch } )
-    elif("News" == appname) :
+    elif( "News" == appname ) :
         print "\tNewsMemberService.syncAllMembersByExtId"
         NewsMemberService.syncAllMembersByExtId( {"updateOnEmailLoginMatch": EmailMatch } )
-    elif("Dogear" == appname) :
+    elif( "Dogear" == appname ) :
         print "\tDogearMemberService.syncAllMembersByExtId"
         DogearMemberService.syncAllMembersByExtId( {"updateOnEmailLoginMatch": EmailMatch } )
-    elif("Communities" == appname) :
+    elif( "Communities" == appname ) :
         print "\tCommunitesMemberService.syncAllMembersByExtId"
         CommunitiesMemberService.syncAllMembersByExtId( {"updateOnEmailLoginMatch": EmailMatch } )
-    elif("Files" == appname) :
+    elif( "Files" == appname ) :
         print "\tFilesMemberService.syncAllMembersByExtId"
         FilesMemberService.syncAllMembersByExtId( {"updateOnEmailLoginMatch": EmailMatch } )
-    elif("Forums" == appname) :
+    elif( "Forums" == appname ) :
         print "\tForumsMemberService.syncAllMembersByExtId"
         ForumsMemberService.syncAllMembersByExtId( {"updateOnEmailLoginMatch": EmailMatch } )
-    elif("Wikis" == appname) :
+    elif( "Wikis" == appname ) :
         print "\tWikisMemberService.syncAllMembersByExtId"
         WikisMemberService.syncAllMembersByExtId( {"updateOnEmailLoginMatch": EmailMatch } )
     else :
@@ -52,4 +43,4 @@ def memService(appname,EmailMatch):
 
 for app in apps:
     print "Sync all Members by EXTID for " + app
-    memService(app, EmailMatch)
+    memService( app, EmailMatch )

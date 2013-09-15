@@ -11,68 +11,59 @@ LOGIN = sys.argv[0]
 print "Syncing MemberService for " + LOGIN
 
 # Loading Connections Administration Commands
-execfile("activitiesAdmin.py")
-execfile("blogsAdmin.py")
-execfile("communitiesAdmin.py")
-execfile("dogearAdmin.py")
-execfile("filesAdmin.py")
-execfile("forumsAdmin.py")
-execfile("homepageAdmin.py")
-execfile("newsAdmin.py")
-#execfile("profilesAdmin.py")
-execfile("wikisAdmin.py")
+execfile( "loadAll.py" )
 
-#try:
+# try:
 #   print "ExtId Profiles: ",
 #   print ProfilesService.getMemberExtIdByLogin(LOGIN)
-#except:
+# except:
 #   print 'No user with Login ' + LOGIN + ' found'
 
 try:
    print "ExtId Activities: ",
-   print ActivitiesMemberService.getMemberExtIdByLogin(LOGIN)
+   print ActivitiesMemberService.getMemberExtIdByLogin( LOGIN )
 except:
    print 'No user with Login ' + LOGIN + ' found'
 
 try:
    print "ExtId Blogs: ",
-   print BlogsMemberService.getMemberExtIdByLogin(LOGIN)
+   print BlogsMemberService.getMemberExtIdByLogin( LOGIN )
 except:
    print 'No user with Login ' + LOGIN + ' found'
 
 try:
    print "ExtId Communities: ",
-   print CommunitiesMemberService.getMemberExtIdByLogin(LOGIN)
+   print CommunitiesMemberService.getMemberExtIdByLogin( LOGIN )
 except:
    print 'No user with Login ' + LOGIN + ' found'
 
 try:
    print "ExtId Dogear: ",
-   print DogearMemberService.getMemberExtIdByLogin(LOGIN)
+   print DogearMemberService.getMemberExtIdByLogin( LOGIN )
 except:
    print 'No user with Login ' + LOGIN + ' found'
 
 try:
    print "ExtId Files: ",
-   print FilesMemberService.getMemberExtIdByLogin(LOGIN)
+   print FilesMemberService.getMemberExtIdByLogin( LOGIN )
 except:
    print 'No user with Login ' + LOGIN + ' found'
 
 try:
    print "ExtId Forums: ",
-   print ForumsMemberService.getMemberExtIdByLogin(LOGIN)
+   print ForumsMemberService.getMemberExtIdByLogin( LOGIN )
 except:
    print 'No user with Login ' + LOGIN + ' found'
 
 try:
    print "ExtId News, Search, Homepage: ",
-   print NewsMemberService.getMemberExtIdByLogin(LOGIN)
+   print NewsMemberService.getMemberExtIdByLogin( LOGIN )
 except:
    print 'No user with Login ' + LOGIN + ' found'
 
 try:
    print "ExtId Wikis: ",
-   print WikisMemberService.getMemberExtIdByLogin(LOGIN)
+   print WikisMemberService.getMemberExtIdByLogin( LOGIN )
 except:
    print 'No user with Login ' + LOGIN + ' found'
 

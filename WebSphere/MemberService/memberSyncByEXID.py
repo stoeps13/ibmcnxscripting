@@ -11,62 +11,53 @@ EXID = sys.argv[0]
 print "Syncing MemberService for " + EXID
 
 # Loading Connections Administration Commands
-execfile("activitiesAdmin.py")
-execfile("blogsAdmin.py")
-execfile("communitiesAdmin.py")
-execfile("dogearAdmin.py")
-execfile("filesAdmin.py")
-execfile("forumsAdmin.py")
-execfile("homepageAdmin.py")
-execfile("newsAdmin.py")
-execfile("profilesAdmin.py")
-execfile("wikisAdmin.py")
+execfile( "loadAll.py" )
 
 try:
    print "Sync Activities"
-   ActivitiesMemberService.syncMemberByExtId(EXID)
+   ActivitiesMemberService.syncMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Blogs"
-   BlogsMemberService.syncMemberByExtId(EXID)
+   BlogsMemberService.syncMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Communities"
-   CommunitiesMemberService.syncMemberByExtId(EXID)
+   CommunitiesMemberService.syncMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Dogear"
-   DogearMemberService.syncMemberByExtId(EXID)
+   DogearMemberService.syncMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Files"
-   FilesMemberService.syncMemberByExtId(EXID)
+   FilesMemberService.syncMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Forums"
-   ForumsMemberService.syncMemberByExtId(EXID)
+   ForumsMemberService.syncMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync News, Search, Homepage"
-   NewsMemberService.syncMemberByExtId(EXID)
+   NewsMemberService.syncMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
 try:
    print "Sync Wikis"
-   WikisMemberService.syncMemberByExtId(EXID)
+   WikisMemberService.syncMemberByExtId( EXID )
 except:
    print 'No user with ExtId ' + EXID + ' found'
 
