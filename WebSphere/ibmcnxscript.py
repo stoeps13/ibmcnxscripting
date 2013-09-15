@@ -30,3 +30,4 @@ def synchAllNodes():
         print "----------------------------------------------------------------------------------------- "
         print "Full Resyncronization completed "
         print ""
+
