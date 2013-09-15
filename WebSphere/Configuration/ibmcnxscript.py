@@ -12,3 +12,17 @@ def getDSId( dbName ):
     except:
         print "Error when getting the DataSource ID!" 
         pass
+    
+# Function to synchronize Nodes
+def synchAllNodes():
+    nodelist = AdminTask.listManagedNodes().splitlines()
+    cell = AdminControl.getCell()
+    for nodename in nodelist :
+        print "Syncronizing node" + nodename
+        repo = AdminControl.completeObjectName( 'type=ConfigRepository,process=nodeagent,node=' + nodename + ',*' )
+        AdminControl.invoke( repo, 'refreshRepositoryEpoch' )
+        sync = AdminControl.completeObjectName( 'cell=' + cell + ',node=' + nodename + ',type=NodeSync,*' )
+        AdminControl.invoke( sync , 'sync' )
+        print "----------------------------------------------------------------------------------------- "
+        print "Full Resyncronization completed "
+        print ""
