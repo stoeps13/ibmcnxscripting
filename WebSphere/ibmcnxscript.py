@@ -1,4 +1,8 @@
-# for better reuseability here i begin to put function
+# ibmcnxscript.py
+#
+# functions which are used in multiple scripts
+# use them with "import ibmcnxscript"
+# call function with ibmcnxscript.getDSId( db )
 # 
 # Author: Christoph Stoettner
 # email: christoph.stoettner@stoeps.de
@@ -13,7 +17,7 @@ def getDSId( dbName ):
         print "Error when getting the DataSource ID!" 
         pass
     
-# Function to synchronize Nodes
+# Function to synchronize all Nodes
 def synchAllNodes():
     nodelist = AdminTask.listManagedNodes().splitlines()
     cell = AdminControl.getCell()

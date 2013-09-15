@@ -1,7 +1,15 @@
 Some scripts which can be used or called from wsadmin
 -----------------------------------------------------
 
-# changeDataSource.py
+# Install jython scripts
+
+I copy all .py scripts to WAS_HOME/profiles/Dmgr01/bin or create symbolic links there. This is the easiest way to get maximum functionality.
+
+# loadAll.py
+
+This script call all IBM Connections functions.
+
+# cfgDataSource.py
 
 I wrote this script to set the DataSource connection pool settings as it is recommended in IBM Connections Performance Tuning Guide. 
 
@@ -14,12 +22,12 @@ You have to call the scripts with `-username adminuser -password yourpassword` o
 ### Linux
 Change to `WASROOT/profiles/Dmgr01/bin`
 
-    ./wsadmin.sh -lang jython -f pathtoscript/changeDataSource.py
+    ./wsadmin.sh -lang jython -f pathtoscript/cfgDataSource.py
 
 ### Windows
 Change to `WASROOT\profiles\Dmgr01\bin`
 
-    wsadmin.bat -lang jython -f pathtoscript\changeDataSource.py
+    wsadmin.bat -lang jython -f pathtoscript\cfgDataSource.py
 
 # MemberSync
 
