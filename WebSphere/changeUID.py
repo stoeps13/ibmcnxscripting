@@ -1,0 +1,31 @@
+# Script to change the UID of Users
+#
+# Author: Christoph Stoettner
+# E-Mail: christoph.stoettner@stoeps.de
+#
+# example: wsadmin.sh -lang jython -f changeUID.py file.csv
+#
+# Format of CSV-File:
+# uid;mailaddress
+#
+import sys
+import os
+
+# Check OS on windows .strip('\n') is not required
+
+# Import Connections Admin Commands for Profiles
+execfile( "profilesAdmin.py" )
+print "\nReading from file: " + sys.argv[0]
+
+myfile = open( sys.argv[1], 'r' )
+for line in myfile.readlines():
+    if( ";" in line ) :
+        data = line.split( ";" )
+        
+    print "Working on user " + data[1]
+    email = data[1].strip()
+    uid = data[0].strip()
+    ProfilesService.updateUser( str( email ), uid = str( uid ) )
+    ProfilesService.publishUserData( email )
+        
+print '\nDONE \n'
