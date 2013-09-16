@@ -6,7 +6,8 @@
 # example: wsadmin.sh -lang jython -f changeUID.py file.csv
 #
 # Format of CSV-File:
-# uid;mailaddress
+# uid;mailaddress 
+# don't mask strings with "
 #
 import sys
 import os
