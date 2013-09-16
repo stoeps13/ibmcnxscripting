@@ -10,7 +10,7 @@
 # Author: Christoph Stoettner
 # E-Mail: christoph.stoettner@stoeps.de
 #
-for db in activities blogs cognos communities dogear files forum libraries.gcd libraries.os metrics mobild wikis ; do
+for db in activities blogs cognos communities dogear files forum libraries.gcd libraries.os metrics mobile wikis ; do
 	db2 -td@ -vf $db/db2/clearScheduler.sql
 done
 for db in homepage profiles ; do
