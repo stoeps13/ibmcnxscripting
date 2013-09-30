@@ -1,0 +1,105 @@
+#!/bin/bash
+#
+# description: DB2 Start/Stop Script
+# chkconfig: 2345 80 05
+# Author: Nico Meisenzahl
+# Changed 06/27/2013 Christoph Stoettner
+# processname: db2
+
+# Source function library.
+. /etc/init.d/functions
+
+### please change ###
+DB2HOME=/home/db2inst1/sqllib
+DB2ROOT=/opt/ibm/db2/V10.1
+DASHOME=/home/dasusr1
+DASUSER=dasusr1
+DB2USER=db2inst1
+### please change ###
+RETVAL=0
+prog="db2"
+lockfile=/var/lock/subsys/$prog
+lockfiledas=/var/lock/subsys/das
+lockfilefm=/var/lock/subsys/db2fm
+
+startdas() {
+	echo -n $"Starting db2admin: "
+	su - $DASUSER -c "db2admin start >/dev/null 2>&1" && success || failure
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch $lockfile
+	echo
+	return $RETVAL
+}
+startdb2() {
+	echo -n $"Starting $prog: "
+	su - $DB2USER -c "$DB2HOME/adm/db2start >/dev/null 2>&1" && success || failure
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch $lockfile
+	echo
+	return $RETVAL
+}
+
+startfm(){
+	echo -n $"Starting db2fm:"
+	su - $DB2USER -c "$DB2HOME/bin/db2fm -U -u -i $DB2USER -m $DB2ROOT/das/lib/libdb2dasgcf.so.1 >/dev/null 2>&1" && success || failure
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch $lockfilefm
+	echo
+	return $RETVAL
+}
+
+stopdas() {
+	echo -n $"Stoping db2admin: "
+	su - $DASUSER -c "db2admin stop >/dev/null 2>&1" && success || failure
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch $lockfile
+	echo
+	return $RETVAL
+}
+stopdb2() {
+	echo -n $"Stopping $prog:"
+	su - $DB2USER -c "$DB2HOME/adm/db2stop force >/dev/null 2>&1" && success || failure
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f $lockfile
+	echo
+	return $RETVAL
+}
+stopfm() {
+	echo -n $"Stopping db2fm:"
+	su - $DB2USER -c "$DB2HOME/bin/db2fm -d -i $DB2USER -m $DB2ROOT/das/lib/libdb2dasgcf.so.1 >/dev/null 2>&1" && success || failure
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f $lockfilefm
+	echo
+	return $RETVAL
+}
+
+restart() {
+	stopfm
+	stopdb2
+	stopdas
+	sleep 5
+	startdas
+	startdb2
+	startfm
+}
+
+case "$1" in
+start)
+	startdas
+	startdb2
+	startfm
+	;;
+stop)
+	stopfm
+	stopdas
+	stopdb2
+	;;
+restart)
+	restart
+	;;
+*)
+	echo "Usage: `basename $0` (start|stop|restart)"
+	exit 1
+	;;
+esac
+exit $?
