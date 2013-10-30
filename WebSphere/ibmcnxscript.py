@@ -11,7 +11,7 @@
 # Used in cfgDataSource
 def getDSId( dbName ):
     try:
-        DSId = AdminConfig.getid( 'DataSource:' + dbName + '/' )
+        DSId = AdminConfig.getid( '/DataSource:' + dbName + '/' )
         return DSId
     except:
         print "Error when getting the DataSource ID!" 
