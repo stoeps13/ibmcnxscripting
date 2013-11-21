@@ -1,21 +1,18 @@
 # securityRoleBackup.py
 # Author: Christoph Stoettner
 # E-Mail: christoph.stoettner@stoeps.de
-#
-# do not forget to place ibmcnxscript to the local folder,
-# where you placed this script
-
-import sys
-import errno
-import ibmcnxscript
-
-# Check if a argv variable was used when calling the script
-if len( sys.argv ) == 1:
-    path = sys.argv[0]
-    ibmcnxscript.checkBackupPath( path )
+import os
+# path='/home/cstoettner/Dropbox/Devel/ibmcnxscripting/temp'
+path = sys.argv[0]
+if path == '':
+    path = '../temp/j2eebackup'    # path where Backup is stored
+    print "Setting path to %s!" % path
 else :
-    path = raw_input( "Please provide a path for your backup files: " )
-    ibmcnxscript.checkBackupPath( path )
+    print "%s is used to store the backup!" % path
+
+if not os.path.exists( path ):
+    print "Path does not exist, script creates it!"
+    os.makedirs( path )
 
 apps = AdminApp.list()
 appsList = apps.split( lineSeparator )
