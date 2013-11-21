@@ -14,7 +14,7 @@ if len( sys.argv ) == 1:
     path = sys.argv[0]
     ibmcnxscript.checkBackupPath( path )
 else :
-    path = raw_input( "Please provide a path for your backup files: ")
+    path = raw_input( "Please provide a path for your backup files: " )
     ibmcnxscript.checkBackupPath( path )
 
 apps = AdminApp.list()
