@@ -3,17 +3,15 @@
 # functions which are used in multiple scripts
 # use them with "import ibmcnxscript"
 # call function with ibmcnxscript.getDSId( db )
-#
+# 
 # Author: Christoph Stoettner
 # email: christoph.stoettner@stoeps.de
-
-import os
 
 # Function to get the DataSource ID
 # Used in cfgDataSource
 def getDSId( dbName ):
     try:
-        DSId = AdminConfig.getid( 'DataSource:' + dbName + '/' )
+        DSId = AdminConfig.getid( '/DataSource:' + dbName + '/' )
         return DSId
     except:
         print "Error when getting the DataSource ID!"
