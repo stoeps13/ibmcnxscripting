@@ -13,6 +13,8 @@ perf = {'activities':{'minConnections':1, 'maxConnections':50},
         'communities':{'minConnections':10, 'maxConnections':200},
         'dogear':{'minConnections':1, 'maxConnections':150},
         'files':{'minConnections':10, 'maxConnections':100},
+        'fnos':{'minConnections':10, 'maxConnections':100},
+        'fngcd':{'minConnections':10, 'maxConnections':100},
         'forum':{'minConnections':50, 'maxConnections':100},
         'homepage':{'minConnections':20, 'maxConnections':100},
         'metrics':{'minConnections':1, 'maxConnections':75},
@@ -26,7 +28,7 @@ statementCacheSize = 100    # change to 50 for oracle
 
 for db in perf.keys():    # Looping through databases
     print 'Change DataSource parameters for: %s' % db.upper()
-    try: 
+    try:
         t1 = ibmcnxscript.getDSId( db )
         print '\t\tstatementCacheSize: \t' + str( statementCacheSize )
         print '\t\tminConnections: \t' + str( perf[db]['minConnections'] )
