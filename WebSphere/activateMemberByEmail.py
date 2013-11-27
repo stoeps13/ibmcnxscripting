@@ -6,6 +6,7 @@
 #
 # example: wsadmin.sh -lang jython -f memberSyncByEmail.py cstoettner@fum.de
 #
+# Update 20131114 CST     Check function, i think there is a problem, when uid is not set within the deactived user
 
 
 MAILADDRESS = sys.argv[0]
