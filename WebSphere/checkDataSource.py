@@ -1,4 +1,3 @@
-# menu-cnx.py
 # Author: Christoph Stoettner
 # E-Mail: christoph.stoettner@stoeps.de
 # Blog: http://www.stoeps.de
