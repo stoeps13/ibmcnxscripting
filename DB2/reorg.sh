@@ -16,3 +16,4 @@ done
 for db in homepage profiles ; do
 	db2 -tvf $db/db2/reorg.sql
 done
+
