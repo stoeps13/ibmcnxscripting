@@ -4,7 +4,7 @@
 # copy this script in the path of your instance owner (db2inst1)
 # e.g. /home/db2inst1
 #
-# Go to the Wizards-Directory/connections.sql/
+# Go to the Wizards-folder/connections.sql/
 # and call the script
 #
 # Author: Christoph Stoettner
