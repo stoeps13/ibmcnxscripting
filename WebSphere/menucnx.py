@@ -8,7 +8,7 @@ import ibmcnxscript
 
 # Properties and Environment
 properties = {
-              'strTitle':'Administration of IBM Connections',
+              'strTitle':'Administration of IBM WebSphere & IBM Connections',
               'strPoint1':'(1). CellName',
               'strPoint2':'(2). Backup / Restore',
               'strPoint2a':'(2a). Backup Security Roles (all Apps)',
@@ -27,7 +27,9 @@ properties = {
               'strPoint5b':'(5b). User Management 2',
               'strPoint6':'(6). Troubleshooting',
               'strPoint6a':'(6a). Check DB connections',
-              'strPoint6a':'(6b). Check Application Status',
+              'strPoint6b':'(6b). Check Application Status',
+              'strPoint7':'(7). Connections Administration',
+              'strPoint7a':'(7a). Work with Files Policies',
               'strPointE':'(E). Exit'
               }
 menu = ''
@@ -71,6 +73,8 @@ def menucnx( menu ):
     if menu == '6':
         print '\t\t\t' + properties['strPoint6a']
         print '\t\t\t' + properties['strPoint6b']
+    if menu == '7':
+        print '\t\t\t' + properties['strPoint7a']
     print
     print '\t\t' + properties['strPointE']
     print
@@ -137,6 +141,13 @@ def menucnx( menu ):
         menucnx( menu )
     elif name.lower() == '6b':
         execfile( 'checkAppStatus.py' )
+        menucnx( menu )
+    elif name == "7":
+        menu = '7'
+        menucnx( menu )
+        menu = ''
+    elif name.lower() == '7a':
+        execfile( 'cfgFilesPolicies.py' )
         menucnx( menu )
     elif name.lower() == "e":
         quit()
