@@ -18,6 +18,7 @@ properties = {
               'strPoint3b':'(3b). Set J2EE Roles initially (unrestricted)',
               'strPoint3c':'(3c). Performance Tuning DataSources',
               'strPoint3d':'(3d). Configure Monitoring Policy',
+              'strPoint3e':'(3e). Configure SystemOut/Err Log Size',
               'strPoint4':'(4). Documentation',
               'strPoint4a':'(4a). JVM Parameters',
               'strPoint4b':'(4b). WebSphere Variables',
@@ -60,6 +61,7 @@ def menucnx( menu ):
         print '\t\t\t' + properties['strPoint3b']
         print '\t\t\t' + properties['strPoint3c']
         print '\t\t\t' + properties['strPoint3d']
+        print '\t\t\t' + properties['strPoint3e']
     print '\t\t' + properties['strPoint4']
     if menu == '4':
         print '\t\t\t' + properties['strPoint4a']
@@ -111,6 +113,9 @@ def menucnx( menu ):
         menu == ''
     elif name.lower() == '3d':
         execfile( 'cfgMonitoringPolicy.py' )
+        menu == ''
+    elif name.lower() == '3e':
+        execfile( 'cfgLogFiles.py' )
         menu == ''
     elif name == "4":
         menu = '4'
