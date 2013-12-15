@@ -12,7 +12,6 @@ webservers = AdminTask.listServers( '[-serverType WEB_SERVER]' ).splitlines()
 for webserver in webservers:
     servers.remove( webserver )
 
-
 for server in servers:
     jvm = AdminConfig.list( 'JavaVirtualMachine', server )
     srv = server.split( '/' )

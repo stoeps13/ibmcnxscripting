@@ -26,6 +26,7 @@ for server in servers:
 	print 'Set nodeRestartState for %s to: %s' % ( server.split( '(' )[0], state.upper() )
 	monitoringPolicy = AdminConfig.list( "MonitoringPolicy", server )
 	AdminConfig.modify( monitoringPolicy, '[[nodeRestartState ' + state.upper() + ']]' )
-	AdminConfig.save()
+
+AdminConfig.save()
 
 ibmcnxscript.synchAllNodes()
