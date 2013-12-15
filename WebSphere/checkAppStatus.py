@@ -7,17 +7,26 @@ print "Getting application status of all installed applications..."
 
 applications = AdminApp.list().splitlines();
 
+runningApps = []
+stoppedApps = []
+
 for application in applications:
     applName = AdminControl.completeObjectName( 'type=Application,name=' + application + ',*' )
     if applName != '':
         aStatus = 'running';
+        runningApps.append( application )
     else:
         aStatus = 'stopped';
-        print 'Application: ' + application + ' is ' + aStatus
+        stoppedApps.append( application )
 
-# ToDo: Change Script to write Application name and status to a dictionary, then sort this dict and print
-# grouped Applications, first running, after this stopped applications.
+print ''
+print '\tRUNNING APPLICATIONS: \n'
+for app in runningApps:
+    print '\t\t' + app
 
-# If this works -> change DataSource Script to print grouped status.
+print ''
+print '\tSTOPPED APPLICATIONS: \n'
+for app in stoppedApps:
+    print '\t\t' + app
 
-# ToDo: Put this in a function, that function can be used in other scripts.
+print ''
