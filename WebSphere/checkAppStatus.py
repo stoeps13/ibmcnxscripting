@@ -19,6 +19,9 @@ for application in applications:
         aStatus = 'stopped';
         stoppedApps.append( application )
 
+runningApps.sort()
+stoppedApps.sort()
+
 print ''
 print '\tRUNNING APPLICATIONS: \n'
 for app in runningApps:
