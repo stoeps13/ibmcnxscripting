@@ -1,4 +1,4 @@
-# ConfigureConnectionsRolesRestricted
+# cfgJ2EERolesRestricted
 #
 # Author: Klaus Bild
 # Blog: http://www.kbild.ch
