@@ -33,31 +33,31 @@ def printPolicies( policies ):
         if state == 'A':
             state = 'ADD'
             title = raw_input( 'Title of Policy: ' )
-	    maxSize = float( raw_input( 'max Library Size in GB: ' ) )
-	    addPolicy( title, maxSize )
+            maxSize = float( raw_input( 'max Library Size in GB: ' ) )
+            addPolicy( title, maxSize )
         elif state == 'E':
             state = 'EDIT'
-	    policy = int( raw_input( 'Policy ID to edit: ' ) )
-	    title = raw_input( 'New Title for Policy: ' )
-	    if title == '':
-	    	title = policies[policy]['title']
-	    maxSize = raw_input( 'New max Size for Policy (GB): ' )
-	    if maxSize != '':
-		maxSize = float( maxSize ) * 1073741824.0
-	    elif maxSize == '':
-	    	maxSize = float( policies[policy]['maximumSize'] )
-	    editPolicy( policies[policy]['id'], title, maxSize )
+            policy = int( raw_input( 'Policy ID to edit: ' ) )
+            title = raw_input( 'New Title for Policy: ' )
+            if title == '':
+                title = policies[policy]['title']
+            maxSize = raw_input( 'New max Size for Policy (GB): ' )
+            if maxSize != '':
+                maxSize = float( maxSize ) * 1073741824.0
+            elif maxSize == '':
+                maxSize = float( policies[policy]['maximumSize'] )
+            editPolicy( policies[policy]['id'], title, maxSize )
         elif state == 'D':
             state = 'DELETE'
             policy = int( raw_input( 'Delete policy ID (#)? ' ) )
             deletePolicy( policies[policy]['id'] )
-	elif state == 'M':
-	    state = 'MENU'
+        elif state == 'M':
+            state = 'MENU'
             execfile( 'menucnx.py' )
             break
         elif state == 'X':
             state = 'EXIT'
-	    break
+            break
         else:
             continue
 

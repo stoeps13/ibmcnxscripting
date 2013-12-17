@@ -8,6 +8,7 @@
 # email: christoph.stoettner@stoeps.de
 
 import os
+
 # Function to get the DataSource ID
 # Used in cfgDataSource
 def getDSId( dbName ):
@@ -172,3 +173,6 @@ def showJdbcProviders():
         print "Classpath: \t\t" + providerClasspath
         print "Class Name: \t\t" + providerImplementationClassName
         print  "\n"
+
+
+
