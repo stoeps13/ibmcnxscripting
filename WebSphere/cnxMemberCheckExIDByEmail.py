@@ -39,7 +39,7 @@ conn.close()
 for e in employeeList:
     # print e['PROF_UID_LOWER'] + "\t\t" + e['PROF_MAIL_LOWER'] + "\t\t" + e['PROF_GUID']
     # print e['PROF_MAIL']
-    print "Profiles:\t\t\t" + e['PROF_GUID']
+    print "Profiles:\t\t\t " + e['PROF_GUID']
 
 LOGIN = e['PROF_MAIL']
 try:
