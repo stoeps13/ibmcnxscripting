@@ -1,3 +1,14 @@
+#
+# Class was found here:
+# http://stackoverflow.com/questions/15083900/console-menu-generator-in-python
+# Author: http://stackoverflow.com/users/1153938/vorsprung
+#
+# Original python code, made some changes that it works on Jython / wsadmin too
+# Changes:
+# Author: Christop Stoettner
+# E-Mail: info@stoeps.de
+#
+
 import sys
 class myMenu:
     items = []
@@ -10,7 +21,6 @@ class myMenu:
         print '\n\tWebSphere and Connections Administration'
         print '\t----------------------------------------', '\n'
         for l in self.items:
-            # print c, l['text'], "\n"
             print '\t',
             print c, l['text']
             c = c + 1
