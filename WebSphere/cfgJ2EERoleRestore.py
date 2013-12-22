@@ -11,9 +11,9 @@ path = raw_input( "Path and Folder where Backup is stored: " )
 ibmcnxscript.checkBackupPath( path )
 # print '\tPATH: ' + path
 
-def convertFile2Dict( appname ):
+def convertFile2Dict( appname, path ):
     # function to convert backup txt files of Security Role Backup to a dictionary
-    print '\tPATH: ' + path
+    # print '\tPATH: ' + path
     filename = path + '/' + appname + ".txt"
     myfile = open( filename, 'r' )
 
@@ -61,7 +61,7 @@ allowed_answer = ['yes', 'y', 'ja', 'j']
 if sure.lower() in allowed_answer:
     for app in appsList:
         # For testing: set app to example applicatio
-        setSecurityRoles( convertFile2Dict( app ), app )
+        setSecurityRoles( convertFile2Dict( app, path ), app )
         print "Restore of Security Roles finished!"
 else:
     print 'Restore canceled!'
