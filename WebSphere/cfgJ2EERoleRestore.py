@@ -3,14 +3,17 @@
 # E-Mail: christoph.stoettner@stoeps.de
 import os
 import sys
+import ibmcnxscript
 
 # Restore Security Role from Textfile (created with j2eerolebackup
 
 path = raw_input( "Path and Folder where Backup is stored: " )
 ibmcnxscript.checkBackupPath( path )
+# print '\tPATH: ' + path
 
 def convertFile2Dict( appname ):
     # function to convert backup txt files of Security Role Backup to a dictionary
+    print '\tPATH: ' + path
     filename = path + '/' + appname + ".txt"
     myfile = open( filename, 'r' )
 
