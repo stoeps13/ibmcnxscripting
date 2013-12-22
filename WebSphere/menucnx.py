@@ -19,24 +19,28 @@ properties = {
               'strPoint3c':'(3c). Performance Tuning DataSources',
               'strPoint3d':'(3d). Configure Monitoring Policy',
               'strPoint3e':'(3e). Configure SystemOut/Err Log Size',
+              'strPoint3f':'(3f). Configure JVM Heap Size',
               'strPoint4':'(4). Documentation',
               'strPoint4a':'(4a). JVM Parameters',
               'strPoint4b':'(4b). WebSphere Variables',
-              'strPoint4c':'(4c). DataSource Properties',
+              'strPoint4c':'(4c). JVM Properties',
               'strPoint5':'(5). User Management',
-              'strPoint5a':'(5a). User Management 1',
-              'strPoint5b':'(5b). User Management 2',
+              'strPoint5a':'(5a). Deactivate and Activate a User',
+              'strPoint5a':'(5b). Deactivate a User by Email (all Apps)',
+              'strPoint5c':'(5c). Sync all User in all Apps by Ext ID',
               'strPoint6':'(6). Troubleshooting',
               'strPoint6a':'(6a). Check DB connections',
               'strPoint6b':'(6b). Check Application Status',
+              'strPoint6c':'(6c). Check External ID of a User',
               'strPoint7':'(7). Connections Administration',
               'strPoint7a':'(7a). Work with Files Policies',
+              'strPoint7b':'(7b). Add Policies to Libraries',
               'strPointE':'(E). Exit'
               }
 menu = ''
 # Set some values
 try:
-    cellname = AdminConfig.getCell()
+    cellname = AdminControl.getCell()
 except:
     cellname = '\t\tError: Not started in the right context.'
     print
@@ -62,6 +66,7 @@ def menucnx( menu ):
         print '\t\t\t' + properties['strPoint3c']
         print '\t\t\t' + properties['strPoint3d']
         print '\t\t\t' + properties['strPoint3e']
+        print '\t\t\t' + properties['strPoint3f']
     print '\t\t' + properties['strPoint4']
     if menu == '4':
         print '\t\t\t' + properties['strPoint4a']
@@ -71,12 +76,15 @@ def menucnx( menu ):
     if menu == '5':
         print '\t\t\t' + properties['strPoint5a']
         print '\t\t\t' + properties['strPoint5b']
+        print '\t\t\t' + properties['strPoint5c']
     print '\t\t' + properties['strPoint6']
     if menu == '6':
         print '\t\t\t' + properties['strPoint6a']
         print '\t\t\t' + properties['strPoint6b']
+        print '\t\t\t' + properties['strPoint6c']
     if menu == '7':
         print '\t\t\t' + properties['strPoint7a']
+        print '\t\t\t' + properties['strPoint7b']
     print
     print '\t\t' + properties['strPointE']
     print
@@ -93,20 +101,20 @@ def menucnx( menu ):
         menucnx( menu )
         menu = ''
     elif name.lower() == "2a":
-        execfile( "securityRoleBackup.py" )
+        execfile( "cfgJ2EERoleBackup.py" )
         menu = ''
     elif name.lower == '2b':
-            execfile( "securityRoleRestore.py" )
+            execfile( "cfgJ2EERoleRestore.py" )
             menu = ''
     elif name == "3":
         menu = '3'
         menucnx( menu )
         menu = ''
     elif name.lower() == '3a':
-        execfile( 'ConfigureConnectionsRolesRestricted.py' )
+        execfile( 'cfgJ2EERolesRestricted.py' )
         menu == ''
     elif name.lower() == '3b':
-        execfile( 'ConfigureConnectionsRolesUnrestricted.py' )
+        execfile( 'cfgJ2EERolesUnrestricted.py' )
         menu == ''
     elif name.lower() == '3c':
         execfile( 'cfgDataSource.py' )
@@ -117,26 +125,35 @@ def menucnx( menu ):
     elif name.lower() == '3e':
         execfile( 'cfgLogFiles.py' )
         menu == ''
+    elif name.lower() == '3f':
+        execfile( 'cfgJVMHeap.py' )
+        menu == ''
     elif name == "4":
         menu = '4'
         menucnx( menu )
         menu = ''
     elif name.lower() == '4a':
-        execfile( "getJVMHeap.py" )
-        menucnx( menu )
+        execfile( "checkJVMHeap.py" )
+        menu = ''
     elif name.lower() == '4b':
-        print '4b'
+		execfile( "checkVariables.py" )
+		menu = ''
     elif name.lower() == '4c':
-        ibmcnxscript.showJdbcProviders()
-        menucnx( menu )
+		execfile( "checkPorts.py" )
+		menu = ''
     elif name == "5":
         menu = '5'
         menucnx( menu )
         menu = ''
     elif name.lower() == '5a':
-        print '5a'
+        execfile( 'cnxMemberDeactAndActByEmail.py' )
+        menu = ''
     elif name.lower() == '5b':
-        print '5b'
+        execfile( 'cnxMemberInactivateByEmail.py' )
+        menu = ''
+    elif name.lower() == '5c':
+        execfile( "cnxMemberSyncAllByEXID.py" )
+        menu = ''
     elif name == "6":
         menu = '6'
         menucnx( menu )
@@ -147,13 +164,21 @@ def menucnx( menu ):
     elif name.lower() == '6b':
         execfile( 'checkAppStatus.py' )
         menucnx( menu )
+    elif name.lower() == '6c':
+        execfile( 'cnxMemberCheckExIDByEmail.py' )
+        menucnx( menu )
     elif name == "7":
         menu = '7'
         menucnx( menu )
         menu = ''
     elif name.lower() == '7a':
-        execfile( 'cfgFilesPolicies.py' )
+        execfile( 'cnxFilesPolicies.py' )
         menucnx( menu )
+        menu = ''
+    elif name.lower() == '7b':
+        execfile( 'cnxLibraryPolicies.py' )
+        menucnx( menu )
+        menu = ''
     elif name.lower() == "e":
         quit()
 

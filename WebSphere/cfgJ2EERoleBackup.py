@@ -6,7 +6,7 @@
 # where you placed this script
 
 import sys
-import errno
+# import errno
 import ibmcnxscript
 
 path = raw_input( "Please provide a path for your backup files: " )
