@@ -5,7 +5,10 @@
 
 import sys
 
-execfile( "filesAdmin.py" )
+execfile("filesAdmin.py")
+
+#def loadFilesAdmin():
+#    execfile( 'filesAdmin.py' )
 
 def deletePolicy( uuid ):
     FilesPolicyService.delete( uuid )
@@ -61,6 +64,7 @@ def printPolicies( policies ):
         else:
             continue
 
+#loadFilesAdmin()
 policies = getPolicies()
 printPolicies( policies )
 

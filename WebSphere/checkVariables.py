@@ -23,7 +23,6 @@ for varlist in varMap:
         print ''
         print 'SCOPE: ' + scope
 
-    del dict
     dict = {}
 
     for var in vars:
@@ -48,3 +47,5 @@ for varlist in varMap:
             tab = "\t\t\t\t\t"
 
         print '\t' + str( variable ) + tab + str( dict[variable] )
+
+    del dict

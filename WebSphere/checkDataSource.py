@@ -6,7 +6,7 @@ runDB = []
 errorDB = []
 notInstDB = []
 
-dbs = ['FNOS', 'FNGCD', 'IBM_FORMS_DATA_SOURCE', 'activities', 'blogs', 'communities', 'dogear', 'files', 'forum', 'homepage', 'metrics', 'mobile', 'news', 'oauth provider', 'profiles', 'search', 'wikis']    # List of all databases to check
+dbs = ['FNOSDS', 'FNGCDDS', 'IBM_FORMS_DATA_SOURCE', 'activities', 'blogs', 'communities', 'dogear', 'files', 'forum', 'homepage', 'metrics', 'mobile', 'news', 'oauth provider', 'profiles', 'search', 'wikis']    # List of all databases to check
 
 for db in dbs:    # loop through databases
     ds = AdminConfig.getid( '/DataSource:' + db + '/' )
@@ -19,7 +19,8 @@ for db in dbs:    # loop through databases
             errorDB.append( db )
             # print 'Error: %s is not available' % db
     except:
-        notInstDB.append( db )
+        if notInstDB != "All DB checked ":
+			notInstDB.append( db )
 
 
 runDB.sort()
@@ -34,20 +35,22 @@ try:
 except:
     print '\t\tNo running DB'
 
-print ''
-print '\tDB not installed: \n'
-try:
-    for db in notInstDB:
-        print'\t\t' + DB
-except:
-    print '\t\tAll DB checked'
+if notInstDB:
+	print ''
+	print '\tDB not installed: \n'
+	try:
+		for db in notInstDB:
+			print'\t\t' + db
+	except:
+		print '\t\tAll DB checked'
 
-print ''
-print '\tERROR connecting to: \n'
-try:
-    for db in errorDB:
-        print '\t\t' + db
-except:
-    print '\t\tAll DB running\n'
-print ''
+if errorDB:
+	print ''
+	print '\tERROR connecting to: \n'
+	try:
+		for db in errorDB:
+			print '\t\t' + db
+	except:
+		print '\t\tAll DB running\n'
+	print ''
 

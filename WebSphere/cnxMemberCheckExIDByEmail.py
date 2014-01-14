@@ -2,6 +2,8 @@ import os
 import sys
 from java.util import Properties
 
+execfile("loadAll.py")
+
 # add the jar to your classpath, then import it
 # better to read WebSphere variable PROFILES_JDBC_DRIVER_HOME
 sys.path.append( '/opt/IBM/JDBC/db2jcc4.jar' )

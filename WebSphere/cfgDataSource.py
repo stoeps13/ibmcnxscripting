@@ -1,6 +1,9 @@
 # cfgDataSource.py
 # Author: Christoph Stoettner
 # E-Mail: christoph.stoettner@stoeps.de
+#
+# History:
+# 20131230 stoeps Added Performance Tuning Addendum Parameters
 
 # Import general functions from ibmcnxscript.py
 import ibmcnxscript
@@ -13,8 +16,8 @@ perf = {'activities':{'minConnections':1, 'maxConnections':50},
         'communities':{'minConnections':10, 'maxConnections':200},
         'dogear':{'minConnections':1, 'maxConnections':150},
         'files':{'minConnections':10, 'maxConnections':100},
-        'FNOS':{'minConnections':10, 'maxConnections':100},
-        'FNGCD':{'minConnections':10, 'maxConnections':100},
+        'FNOSDS':{'minConnections':75, 'maxConnections':200},
+        'FNOSDSXA':{'minConnections':25, 'maxConnections':75},
         'forum':{'minConnections':50, 'maxConnections':100},
         'homepage':{'minConnections':20, 'maxConnections':100},
         'metrics':{'minConnections':1, 'maxConnections':75},

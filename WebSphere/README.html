@@ -1,0 +1,89 @@
+<h1 id="install-jython-scripts">Install jython scripts</h1>
+<p>I copy all *.py scripts to $WAS_HOME/profiles/Dmgr01/bin or create symbolic links there. This is the easiest way to get maximum functionality.</p>
+<pre><code>cp *.py $WAS_HOME/profiles/Dmgr01/bin</code></pre>
+<p>Alternative: copy Scripts to a local folder and create Symbolic Links:</p>
+<pre><code>ln -s /opt/IBM/scripts/*.py $WAS_HOME/profiles/Dmgr01/bin</code></pre>
+<h1 id="loadall.py">loadAll.py</h1>
+<p>This script calls all IBM Connections functions.</p>
+<h1 id="call-scripts">Call Scripts</h1>
+<h2 id="using-the-menu">Using the menu</h2>
+<div class="figure">
+<img src="../images/cnxmenu.png" alt="CNXMENU" /><p class="caption">CNXMENU</p>
+</div>
+<h3 id="linux">Linux</h3>
+<p>Change to <code>WASROOT/profiles/Dmgr01/bin</code></p>
+<pre><code>./wsadmin.sh -lang jython -profile cnxmenu.py</code></pre>
+<h3 id="windows">Windows</h3>
+<p>Change to <code>WASROOT\profiles\Dmgr01\bin</code></p>
+<pre><code>wsadmin.bat -lang jython -profile cnxmenu.py</code></pre>
+<h2 id="when-loading-wsadmin">when loading wsadmin</h2>
+<p>You have to call the scripts with <code>-username adminuser -password yourpassword</code> or you get a password popup.</p>
+<h3 id="linux-1">Linux</h3>
+<p>Change to <code>WASROOT/profiles/Dmgr01/bin</code></p>
+<pre><code>./wsadmin.sh -lang jython -f scriptname.py</code></pre>
+<h3 id="windows-1">Windows</h3>
+<p>Change to <code>WASROOT\profiles\Dmgr01\bin</code></p>
+<pre><code>wsadmin.bat -lang jython -f scriptname.py</code></pre>
+<h2 id="alternative-through-wsadmin-profile">alternative through wsadmin profile</h2>
+<h3 id="linux-2">Linux</h3>
+<p>Change to <code>WASROOT/profiles/Dmgr01/bin</code></p>
+<pre><code>./wsadmin.sh -lang jython -profile scriptname.py</code></pre>
+<h3 id="windows-2">Windows</h3>
+<p>Change to <code>WASROOT\profiles\Dmgr01\bin</code></p>
+<pre><code>wsadmin.bat -lang jython -profile scriptname.py</code></pre>
+<h2 id="within-wsadmin">within wsadmin</h2>
+<pre><code>execfile(&quot;scriptname.py&quot;)</code></pre>
+<h1 id="script-descriptions">Script descriptions</h1>
+<h2 id="configure-data-sources-cfgdatasource.py">1 - Configure Data Sources (cfgDataSource.py)</h2>
+<p>Script shows you the actual parameters for minConnections and maxConnections</p>
+<div class="figure">
+<img src="../images/cfgdatasource.png" />
+</div>
+<p>Accept to change these settings (y, yes or j):</p>
+<div class="figure">
+<img src="../images/cfgdatasource2.png" />
+</div>
+<h2 id="backup-j2ee-roles-of-all-applications-cfgj2eerolebackup.py">2 - Backup J2EE Roles of all Applications (cfgJ2EERoleBackup.py)</h2>
+<p>Creates a backup of all installed applications of WebSphere Cell.</p>
+<div class="figure">
+<img src="../images/j2eebackup.png" />
+</div>
+<p>Script asks for a Backup path to save text files with roles. Folder will be created, when it does not exists.</p>
+<h2 id="restore-j2ee-roles-of-all-applications-cfgj2eerolerestore.py">3 - Restore J2EE Roles of all Applications (cfgJ2EERoleRestore.py)</h2>
+<p>Restore the backup cfgJ2EERoleBackup.py has created. You must provide the backup path!</p>
+<div class="figure">
+<img src="../images/j2eerestore.png" />
+</div>
+<p>You will be asked, if you're sure. Please consider, that after saving the configuration all applications will restart automatically and can't be accessed for some minutes.</p>
+<div class="figure">
+<img src="../images/j2eerestore2.png" />
+</div>
+<h2 id="set-j2ee-roles-initially-restricted-cfgj2eerolesrestricted.py">4 - Set J2EE Roles initially (restricted) (cfgJ2EERolesRestricted.py)</h2>
+<p>To set J2EE Roles initially, you can use this script. Script will ask you for local Admin, LDAP Admin, Moderator, Mobile Admin, Metrics Admin, LDAP Admin Group, Moderator Group, Mobile Admin Group and Metrics Admin Group.</p>
+<div class="figure">
+<img src="../images/setJ2EERoles.png" />
+</div>
+<p>Type the Admin Users or Groups, when you have multiple Users or Groups for a Role, type them in the next line. Finish one Role with &quot;0&quot;.</p>
+<p>Role settings restricted means, that all Users must authenticate to read anything.</p>
+<h2 id="set-j2ee-roles-initially-unrestricted-cfgj2eerolesunrestricted.py">5 - Set J2EE Roles initially (unrestricted) (cfgJ2EERolesUnrestricted.py)</h2>
+<p>To set J2EE Roles initially, you can use this script. Script will ask you for local Admin, LDAP Admin, Moderator, Mobile Admin, Metrics Admin, LDAP Admin Group, Moderator Group, Mobile Admin Group and Metrics Admin Group.</p>
+<div class="figure">
+<img src="../images/setJ2EERoles.png" />
+</div>
+<p>Type the Admin Users or Groups, when you have multiple Users or Groups for a Role, type them in the next line. Finish one Role with &quot;0&quot;.</p>
+<p>Public content can be read from Blogs, Profiles and Wikis.</p>
+<h2 id="configure-jvm-heap-sizes-cfgjvmheap.py">6 - Configure JVM Heap Sizes (cfgJVMHeap.py)</h2>
+<h2 id="configure-systemouterr-log-size-cfglogfiles.py">7 - Configure SystemOut/Err Log Size (cfgLogFiles.py)</h2>
+<h2 id="configure-monitoring-policy-cfgmonitoringpolicy.py">8 - Configure Monitoring Policy (cfgMonitoringPolicy.py)</h2>
+<h2 id="check-if-all-apps-are-running-checkappstatus.py">9 - Check if all Apps are running (checkAppStatus.py)</h2>
+<h2 id="check-database-connections-checkdatasource.py">10 - Check Database connections (checkDataSource.py)</h2>
+<h2 id="check-jvm-heap-sizes-checkjvmheap.py">11 - Check JVM Heap Sizes (checkJVMHeap.py)</h2>
+<h2 id="check-systemouterr-log-sizes-checklogfiles.py">12 - Check SystemOut/Err Log Sizes (checkLogFiles.py)</h2>
+<h2 id="check-show-all-used-ports-checkports.py">13 - Check / Show all used ports (checkPorts.py)</h2>
+<h2 id="show-websphere-variables-checkvariables.py">14 - Show WebSphere Variables (checkVariables.py)</h2>
+<h2 id="work-with-files-policies-cnxfilespolicies.py">15 - Work with Files Policies (cnxFilesPolicies.py)</h2>
+<h2 id="work-with-libraries-cnxlibrarypolicies.py">16 - Work with Libraries (cnxLibraryPolicies.py)</h2>
+<h2 id="check-external-id-all-apps-profiles-cnxmembercheckexidbyemail.py">17 - Check External ID (all Apps &amp; Profiles) (cnxMemberCheckExIDByEmail.py)</h2>
+<h2 id="deactivate-and-activate-a-user-in-one-step-cnxmemberdeactandactbyemail.py">18 - Deactivate and Activate a User in one step (cnxMemberDeactAndActByEmail.py)</h2>
+<h2 id="deactivate-a-user-by-email-address-cnxmemberinactivatebyemail.py">19 - Deactivate a User by email address (cnxMemberInactivateByEmail.py)</h2>
+<h2 id="synchronize-extid-for-all-users-in-all-apps-cnxmembersyncallbyexid.py">20 - Synchronize ExtID for all Users in all Apps (cnxMemberSyncAllByEXID.py)</h2>

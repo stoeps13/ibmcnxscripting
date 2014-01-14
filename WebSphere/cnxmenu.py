@@ -10,6 +10,10 @@
 #
 
 import sys
+
+execfile( "filesAdmin.py" )
+
+
 class myMenu:
     items = []
 
