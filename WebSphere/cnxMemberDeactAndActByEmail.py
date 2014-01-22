@@ -43,7 +43,10 @@ for e in employeeList:
     # print e['PROF_MAIL']
     print 'Deactivate User with ExID: ' + e['PROF_GUID']
 
-MAILADDRESS = e['PROF_MAIL']
+try:
+    MAILADDRESS = e['PROF_MAIL']
+except:
+    print 'No User with mail address ' + email + ' found!'
 
 try:
    print "Inactivate Activities ",

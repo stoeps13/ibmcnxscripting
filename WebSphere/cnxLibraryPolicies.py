@@ -45,8 +45,8 @@ def combineMaps( personalList, communityList ):
     return pLen, cLen
 
 # Combine personal and community FilesLibrary List
-personalList = FilesLibraryService.browsePersonal( "title", "true", 1, 25 )
-communityList = FilesLibraryService.browseCommunity( "title", "true", 1, 20 )
+personalList = FilesLibraryService.browsePersonal( "title", "true", 1, 100 )
+communityList = FilesLibraryService.browseCommunity( "title", "true", 1, 100 )
 
 pLen, cLen = combineMaps( personalList, communityList )
 
