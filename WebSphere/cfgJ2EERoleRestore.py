@@ -3,20 +3,17 @@
 # E-Mail: christoph.stoettner@stoeps.de
 import os
 import sys
+import ibmcnxscript
 
 # Restore Security Role from Textfile (created with j2eerolebackup
 
-path = sys.argv[0]
-if path == '':
-    path = '../temp/j2eebackup'    # path where Backup is stored
-    print "Setting path to %s!" % path
+path = raw_input( "Path and Folder where Backup is stored: " )
+ibmcnxscript.checkBackupPath( path )
+# print '\tPATH: ' + path
 
-if not os.path.exists( path ):
-    print "Path does not exists, please provide directory with your backup files!"
-    sys.exit()
-
-def convertFile2Dict( appname ):
+def convertFile2Dict( appname, path ):
     # function to convert backup txt files of Security Role Backup to a dictionary
+    # print '\tPATH: ' + path
     filename = path + '/' + appname + ".txt"
     myfile = open( filename, 'r' )
 
@@ -58,7 +55,14 @@ appsList = apps.split( lineSeparator )
 # appsList = ['Blogs','Activities','Wikis']
 # or Single App:
 # appsList = ['Blogs']
-for app in appsList:
-    # For testing: set app to example applicatio
-    setSecurityRoles( convertFile2Dict( app ), app )
-print "Restore of Security Roles finished!"
+sure = raw_input( 'Are you sure? All roles will be overwritten! (Yes|No) ' )
+allowed_answer = ['yes', 'y', 'ja', 'j']
+
+if sure.lower() in allowed_answer:
+    for app in appsList:
+        # For testing: set app to example applicatio
+        setSecurityRoles( convertFile2Dict( app, path ), app )
+        print "Restore of Security Roles finished!"
+else:
+    print 'Restore canceled!'
+

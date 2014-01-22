@@ -8,6 +8,7 @@
 # email: christoph.stoettner@stoeps.de
 
 import os
+
 # Function to get the DataSource ID
 # Used in cfgDataSource
 def getDSId( dbName ):
@@ -39,3 +40,72 @@ def checkBackupPath( path ) :
      except OSError :
          if not os.path.isdir( path ) :
              raise
+
+# Function for Set Roles Script
+def getAdmin( adminvar ):
+    # function to ask for adminusers
+    # return a list with admins
+    # function is called for each admin type and each admin group type
+    admins = []
+    admin = ''
+    adminstring = ''
+    admindict = {
+                 'connwasadmin':'Local WebSphere AdminUser',
+                 'connadmin':'LDAP WebSphere and Connections AdminUser (searchAdmin)',
+                 'connmoderators':'Moderator User',
+                 'connmetrics':'Metrics Admin',
+                 'connmobile':'Mobile Administrators',
+                 'connadmingroup':'LDAP Admin Group',
+                 'connmoderatorgroup':'Moderators Admin Group',
+                 'connmetricsgroup':'Metrics Admin Group',
+                 'connmobilegroup':'Mobile Admin Group'
+    }
+    print 'Type 0 when finished, uid is case sensitiv!'
+    while admin != "0":
+        admin = raw_input( 'Type uid for ' + admindict[adminvar] + ': ' )
+        if admin != '0' and admin != '':
+            admins.append( admin )
+    adminstring = '|'.join( admins )
+    print adminstring
+    return adminstring
+
+# print DataSource Parameters
+def showJdbcProviders():
+    # Idea of this Function from https://webspherescript.wordpress.com
+    # added some things
+    providerEntries = AdminConfig.list( "JDBCProvider" ).splitlines()
+    for provider in providerEntries:
+        providerName = AdminConfig.showAttribute( provider, "name" )
+        providerDescription = AdminConfig.showAttribute( provider, "description" )
+        providerClasspath = AdminConfig.showAttribute( provider, "classpath" )
+        providerImplementationClassName = AdminConfig.showAttribute( provider, "implementationClassName" )
+        print "\t" + providerName
+        print "Description: \t\t" + providerDescription
+        print "Classpath: \t\t" + providerClasspath
+        print "Class Name: \t\t" + providerImplementationClassName
+        print  "\n"
+
+
+def importJar(jarFile):
+    '''
+    import a jar at runtime (needed for JDBC [Class.forName])
+
+    adapted from http://forum.java.sun.com/thread.jspa?threadID=300557
+    Author: SG Langer Jan 2007 translated the above Java to Jython
+    Author: seansummers@gmail.com simplified and updated for jython-2.5.3b3
+
+    >>> importJar('jars/jtds-1.2.5.jar')
+    >>> import java.lang.Class
+    >>> java.lang.Class.forName('net.sourceforge.jtds.jdbc.Driver')
+    <type 'net.sourceforge.jtds.jdbc.Driver'>
+    '''
+    from java.net import URL, URLClassLoader
+    from java.lang import ClassLoader
+    from java.io import File
+    m = URLClassLoader.getDeclaredMethod("addURL", [URL])
+    m.accessible = 1
+    m.invoke(ClassLoader.getSystemClassLoader(), [File(jarFile).toURL()])
+
+    if __name__ == '__main__':
+        import doctest
+        doctest.testmod()

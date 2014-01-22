@@ -1,4 +1,4 @@
-# ConfigureConnectionsRolesRestricted
+# cfgJ2EERolesRestricted
 #
 # Author: Klaus Bild
 # Blog: http://www.kbild.ch
@@ -11,20 +11,23 @@
 # History:
 # 20131124  Christoph Stoettner     Update with loop and try/except to handle errors, added group support
 
+import ibmcnxscript
+
 # Variables for Usermapping
-connwasadmin = 'wasadmin'
-connadmin = 'Admin1|Admin2'
-connmoderators = 'Moderator1|Moderator2'
-connmetrics = 'Metrics1|Metrics2'
-connmobile = 'Mobile1|Mobile2'
+connwasadmin = str( ibmcnxscript.getAdmin( 'connwasadmin' ) )
+connadmin = str( ibmcnxscript.getAdmin( 'connadmin' ) )
+connmoderators = str( ibmcnxscript.getAdmin( 'connmoderators' ) )
+connmetrics = str( ibmcnxscript.getAdmin( 'connmetrics' ) )
+connmobile = str( ibmcnxscript.getAdmin( 'connmobile' ) )
 
 # Variables for Groupmapping
-connadmingroup = 'CNXAdmins'
-connmoderatorgroup = 'CNXModerators'
-connmetricsgroup = 'CNXMetricsAdmins'
-connmobilegroup = 'CNXMobileAdmins'
+connadmingroup = str( ibmcnxscript.getAdmin( 'connadmingroup' ) )
+connmoderatorgroup = str( ibmcnxscript.getAdmin( 'connmoderatorgroup' ) )
+connmetricsgroup = str( ibmcnxscript.getAdmin( 'connmetricsgroup' ) )
+connmobilegroup = str( ibmcnxscript.getAdmin( 'connmobilegroup' ) )
 
-def j2eeRolesCmd( appName ):
+# Set restricted j2ee roles
+def j2eeRolesCmdRestricted( appName, connwasadmin, connadmin, connmoderators, connmetrics, connmobile, connadmingroup, connmoderatorgroup, connmetricsgroup, connmobilegroup ):
     if( appName == 'Activities' ):
         AdminApp.edit( appName, '[-MapRolesToUsers [["person" No Yes "" ""] ["everyone" Yes No "" ""] ["reader" Yes No "" ""] ["metrics-reader" No Yes "" ""] ["search-admin" No No "' + connwasadmin + '|' + connadmin + '" "' + connadmingroup + '"] ["widget-admin" No No "' + connwasadmin + '|' + connadmin + '" "' + connadmingroup + '"] ["admin" No No "' + connwasadmin + '|' + connadmin + '" "' + connadmingroup + '"] ["bss-provisioning-admin" No No "" ""] ]]' )
     elif( appName == 'Blogs' ):
@@ -68,12 +71,13 @@ def j2eeRolesCmd( appName ):
     else:
         print "Unknown Application: %s" % appName
 
+
 apps = AdminApp.list()
 appsList = apps.split( lineSeparator )
 for app in appsList:
     print "Setting Security Roles for %s" % app.upper()
     try:
-        j2eeRolesCmd( app )
+        j2eeRolesCmdRestricted( app, connwasadmin, connadmin, connmoderators, connmetrics, connmobile, connadmingroup, connmoderatorgroup, connmetricsgroup, connmobilegroup )
     except:
         print "Error occured on setting security roles for %s" % app.upper()
 

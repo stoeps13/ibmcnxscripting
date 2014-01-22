@@ -1,4 +1,4 @@
-# ConfigureConnectionsRolesRestricted
+# cfgJ2EERolesRestricted
 #
 # Author: Klaus Bild
 # Blog: http://www.kbild.ch
@@ -9,22 +9,25 @@
 # You have to edit the variables and set them to your administrative Accounts
 
 # History:
-# 20131124  Christoph Stoettner     Update with loop and try/except to handle errors, added group support
+# 20131124  Christoph Stoettner    Update with loop and try/except to handle errors, added group support
+# 20131201  Christoph Stoettner    Add menu to ask for parameters
+
+import ibmcnxscript
 
 # Variables for Usermapping
-connwasadmin = 'wasadmin'
-connadmin = 'Admin1|Admin2'
-connmoderators = 'Moderator1|Moderator2'
-connmetrics = 'Metrics1|Metrics2'
-connmobile = 'Mobile1|Mobile2'
+connwasadmin = ibmcnxscript.getAdmin( 'connwasadmin' )
+connadmin = ibmcnxscript.getAdmin( 'connadmin' )
+connmoderators = ibmcnxscript.getAdmin( 'connmoderators' )
+connmetrics = ibmcnxscript.getAdmin( 'connmetrics' )
+connmobile = ibmcnxscript.getAdmin( 'connmobile' )
 
 # Variables for Groupmapping
-connadmingroup = 'CNXAdmins'
-connmoderatorgroup = 'CNXModerators'
-connmetricsgroup = 'CNXMetricsAdmins'
-connmobilegroup = 'CNXMobileAdmins'
+connadmingroup = ibmcnxscript.getAdmin( 'connadmingroup' )
+connmoderatorgroup = ibmcnxscript.getAdmin( 'connmoderatorgroup' )
+connmetricsgroup = ibmcnxscript.getAdmin( 'connmetricsgroup' )
+connmobilegroup = ibmcnxscript.getAdmin( 'connmobilegroup' )
 
-def j2eeRolesCmd( appName ):
+def j2eeRolesCmdUnrestricted( appName, connwasadmin, connadmin, connmoderators, connmetrics, connmobile, connadmingroup, connmoderatorgroup, connmetricsgroup, connmobilegroup ):
     if( appName == 'Activities' ):
         AdminApp.edit( appName, '[-MapRolesToUsers [["person" No Yes "" ""] ["everyone" Yes No "" ""] ["reader" Yes No "" ""] ["metrics-reader" Yes No "" ""] ["search-admin" No No "' + connwasadmin + '|' + connadmin + '" "' + connadmingroup + '"] ["widget-admin" No No "' + connwasadmin + '|' + connadmin + '" "' + connadmingroup + '"] ["admin" No No "' + connwasadmin + '|' + connadmin + '" "' + connadmingroup + '"] ["bss-provisioning-admin" No No "" ""] ]]' )
     elif( appName == 'Blogs' ):
@@ -68,12 +71,13 @@ def j2eeRolesCmd( appName ):
     else:
         print "Unknown Application: %s" % appName
 
+
 apps = AdminApp.list()
 appsList = apps.split( lineSeparator )
 for app in appsList:
     print "Setting Security Roles for %s" % app.upper()
     try:
-        j2eeRolesCmd( app )
+        j2eeRolesCmdUnrestricted( app, connwasadmin, connadmin, connmoderators, connmetrics, connmobile, connadmingroup, connmoderatorgroup, connmetricsgroup, connmobilegroup )
     except:
         print "Error occured on setting security roles for %s" % app.upper()
 

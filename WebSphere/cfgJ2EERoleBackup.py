@@ -6,16 +6,11 @@
 # where you placed this script
 
 import sys
-import errno
+# import errno
 import ibmcnxscript
 
-# Check if a argv variable was used when calling the script
-if len( sys.argv ) == 1:
-    path = sys.argv[0]
-    ibmcnxscript.checkBackupPath( path )
-else :
-    path = raw_input( "Please provide a path for your backup files: " )
-    ibmcnxscript.checkBackupPath( path )
+path = raw_input( "Please provide a path for your backup files: " )
+ibmcnxscript.checkBackupPath( path )
 
 apps = AdminApp.list()
 appsList = apps.split( lineSeparator )

@@ -1,68 +1,139 @@
-Some scripts which can be used or called from wsadmin
------------------------------------------------------
-
 # Install jython scripts
 
-I copy all .py scripts to WAS_HOME/profiles/Dmgr01/bin or create symbolic links there. This is the easiest way to get maximum functionality.
+I copy all *.py scripts to $WAS_HOME/profiles/Dmgr01/bin or create symbolic links there. This is the easiest way to get maximum functionality.
+
+	cp *.py $WAS_HOME/profiles/Dmgr01/bin
+	
+Alternative: copy Scripts to a local folder and create Symbolic Links:
+
+	ln -s /opt/IBM/scripts/*.py $WAS_HOME/profiles/Dmgr01/bin
 
 # loadAll.py
 
-This script call all IBM Connections functions.
+This script calls all IBM Connections functions.
 
-# cfgDataSource.py
+# Call Scripts
 
-I wrote this script to set the DataSource connection pool settings as it is recommended in IBM Connections Performance Tuning Guide. 
+## Using the menu
 
-There is only a Performance Tuning Guide for IBM Connections 4, so i have no advice to set the parameters for ccm databases.
+![CNXMENU](../images/cnxmenu.png)
 
-## Call Script through wsadmin
+### Linux
+Change to `WASROOT/profiles/Dmgr01/bin`
+
+    ./wsadmin.sh -lang jython -profile cnxmenu.py
+
+### Windows
+Change to `WASROOT\profiles\Dmgr01\bin`
+
+    wsadmin.bat -lang jython -profile cnxmenu.py
+
+## when loading wsadmin
 
 You have to call the scripts with `-username adminuser -password yourpassword` or you get a password popup.
 
 ### Linux
 Change to `WASROOT/profiles/Dmgr01/bin`
 
-    ./wsadmin.sh -lang jython -f pathtoscript/cfgDataSource.py
+    ./wsadmin.sh -lang jython -f scriptname.py
 
 ### Windows
 Change to `WASROOT\profiles\Dmgr01\bin`
 
-    wsadmin.bat -lang jython -f pathtoscript\cfgDataSource.py
+    wsadmin.bat -lang jython -f scriptname.py
 
-# MemberSync
+## alternative through wsadmin profile
 
-* memberSyncByEmail.py  
-* memberSyncByEXID.py   
-* memberSyncByLogin.py
+### Linux
+Change to `WASROOT/profiles/Dmgr01/bin`
 
-These scripts help you synchronize Users against LDAP. They all call first memberSync.py (which contains all needed ConnectionsAppAdmin.py calls) and then start to call each application memberSyncService.
+    ./wsadmin.sh -lang jython -profile scriptname.py
 
-You have to change the line execfile("path/memberService.py") that wsadmin can find the files!
+### Windows
+Change to `WASROOT\profiles\Dmgr01\bin`
 
-Then call the memberSync-Scripts with:
+    wsadmin.bat -lang jython -profile scriptname.py
 
-    ./wsadmin.sh -lang jython -username admin -password password -f "path/memberSyncByXYZ.py" 'MAILADDRESS|EXID|UID'
+## within wsadmin
 
-You can use the DB2 Script `checkExID.sh` for caseSensitiv Mail and UID parts.
+	execfile("scriptname.py")
+	
+# Script descriptions
 
-# Backup and Restore Security Roles
+## 1 - Configure Data Sources (cfgDataSource.py)
 
-## securityrolebackup.sh (former j2eerolebackup.sh)
+Script shows you the actual parameters for minConnections and maxConnections
 
-Loops through installed applications and stores backup to filesystem.
+![](../images/cfgdatasource.png)
 
-Script need a filepath as parameter!
+Accept to change these settings (y, yes or j):
 
-    cd WAS_HOME/profiles/Dmgr01/bin
+![](../images/cfgdatasource2.png)
 
-    ./wsadmin.sh -lang jython -username admin -password password -f securityrolebackup.sh "../temp"
+## 2 - Backup J2EE Roles of all Applications (cfgJ2EERoleBackup.py)
 
-## securityrolerestore.sh
+Creates a backup of all installed applications of WebSphere Cell.
 
-! I didn't tested this script! Please do not use in production!
+![](../images/j2eebackup.png)
 
-Restores roles which are saved through securityrolebackup.sh.
+Script asks for a Backup path to save text files with roles. Folder will be created, when it does not exists.
 
-Script need a filepath (where Backup is stored!) as parameter!
+## 3 - Restore J2EE Roles of all Applications (cfgJ2EERoleRestore.py)
 
-    ./wsadmin.sh -lang jython -username admin -password password -f securityrolerestore.sh "../temp"
+Restore the backup cfgJ2EERoleBackup.py has created. You must provide the backup path!
+
+![](../images/j2eerestore.png)
+
+You will be asked, if you're sure. Please consider, that after saving the configuration all applications will restart automatically and can't be accessed for some minutes.
+
+![](../images/j2eerestore2.png)
+
+## 4 - Set J2EE Roles initially (restricted) (cfgJ2EERolesRestricted.py)
+
+To set J2EE Roles initially, you can use this script. Script will ask you for local Admin, LDAP Admin, Moderator, Mobile Admin, Metrics Admin, LDAP Admin Group, Moderator Group, Mobile Admin Group and Metrics Admin Group. 
+
+![](../images/setJ2EERoles.png)
+
+Type the Admin Users or Groups, when you have multiple Users or Groups for a Role, type them in the next line. Finish one Role with "0".
+
+Role settings restricted means, that all Users must authenticate to read anything.
+
+## 5 - Set J2EE Roles initially (unrestricted) (cfgJ2EERolesUnrestricted.py)
+
+To set J2EE Roles initially, you can use this script. Script will ask you for local Admin, LDAP Admin, Moderator, Mobile Admin, Metrics Admin, LDAP Admin Group, Moderator Group, Mobile Admin Group and Metrics Admin Group. 
+
+![](../images/setJ2EERoles.png)
+
+Type the Admin Users or Groups, when you have multiple Users or Groups for a Role, type them in the next line. Finish one Role with "0".
+
+Public content can be read from Blogs, Profiles and Wikis.
+
+## 6 - Configure JVM Heap Sizes (cfgJVMHeap.py)
+
+## 7 - Configure SystemOut/Err Log Size (cfgLogFiles.py)
+
+## 8 - Configure Monitoring Policy (cfgMonitoringPolicy.py)
+
+## 9 - Check if all Apps are running (checkAppStatus.py)
+
+## 10 - Check Database connections (checkDataSource.py)
+
+## 11 - Check JVM Heap Sizes (checkJVMHeap.py)
+
+## 12 - Check SystemOut/Err Log Sizes (checkLogFiles.py)
+
+## 13 - Check / Show all used ports (checkPorts.py)
+
+## 14 - Show WebSphere Variables (checkVariables.py)
+
+## 15 - Work with Files Policies (cnxFilesPolicies.py)
+
+## 16 - Work with Libraries (cnxLibraryPolicies.py)
+
+## 17 - Check External ID (all Apps & Profiles) (cnxMemberCheckExIDByEmail.py)
+
+## 18 - Deactivate and Activate a User in one step (cnxMemberDeactAndActByEmail.py)
+
+## 19 - Deactivate a User by email address (cnxMemberInactivateByEmail.py)
+
+## 20 - Synchronize ExtID for all Users in all Apps (cnxMemberSyncAllByEXID.py)
