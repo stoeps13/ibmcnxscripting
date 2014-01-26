@@ -1,38 +1,33 @@
-#
-# Class was found here:
-# http://stackoverflow.com/questions/15083900/console-menu-generator-in-python
-# Author: http://stackoverflow.com/users/1153938/vorsprung
-#
-# Original python code, made some changes that it works on Jython / wsadmin too
-# Changes:
 # Author: Christop Stoettner
 # E-Mail: info@stoeps.de
 #
 
 import sys
 
+# Load Files commands, is needed for some further scripts
 execfile( "filesAdmin.py" )
 
-
-class myMenu:
-    items = []
-
+class cnxMenu:
+    menuitems = []
+        
+    # Function to add menuitems
     def AddItem( self, text, function ):
-        self.items.append( {'text': text, 'func':function} )
+        self.menuitems.append( {'text': text, 'func':function} )
 
+    # Function for printing
     def Show( self ):
         c = 1
         print '\n\tWebSphere and Connections Administration'
         print '\t----------------------------------------', '\n'
-        for l in self.items:
+        for l in self.menuitems:
             print '\t',
             print c, l['text']
             c = c + 1
         print
 
     def Do( self, n ):
-        self.items[n]['func']()
-
+        self.menuitems[n]["func"]()
+        
 def cfgDataSource():
     execfile( "cfgDataSource.py" )
 
@@ -99,7 +94,7 @@ def bye():
     sys.exit( 0 )
 
 if __name__ == "__main__":
-    m = myMenu()
+    m = cnxMenu()
     m.AddItem( "Configure DataSources (cfgDataSource.py)", cfgDataSource )
     m.AddItem( 'Backup J2EE Roles of all Applications (cfgJ2EERoleBackup.py)', cfgJ2EERoleBackup )
     m.AddItem( 'Restore J2EE Roles of all Applications (cfgJ2EERoleRestore.py)', cfgJ2EERoleRestore )

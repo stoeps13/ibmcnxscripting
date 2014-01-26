@@ -6,6 +6,8 @@ OpenNTF Alliance (http://www.OpenNTF.org/)
 
 This product is licensed under the terms of the Apache 2.0 license.
 
-The project contains no 3rd party code:
+The project contains following 3rd party code:
 ConfigureConnectionsRoles*.py - Author: Klaus Bild - Licence: Apache 2.0
+BackupDatabasesOffline.bat - Author: Klaus Bild - Licence: Apache 2.0
+BackupDatabasesOnline.bat - Author: Klaus Bild - Licence: Apache 2.0
 
