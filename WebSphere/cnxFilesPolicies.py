@@ -56,7 +56,7 @@ def printPolicies( policies ):
             deletePolicy( policies[policy]['id'] )
         elif state == 'M':
             state = 'MENU'
-            execfile( 'menucnx.py' )
+            execfile( 'cnxmenu.py' )
             break
         elif state == 'X':
             state = 'EXIT'

@@ -29,4 +29,5 @@ for server in servers:
 
 AdminConfig.save()
 
-ibmcnxscript.synchAllNodes()
+print "Synchronizing Nodes"
+# ibmcnxscript.synchAllNodes()
