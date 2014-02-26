@@ -3,6 +3,7 @@
 #
 
 import sys
+import os
 
 # Load Files commands, is needed for some further scripts
 execfile( "filesAdmin.py" )

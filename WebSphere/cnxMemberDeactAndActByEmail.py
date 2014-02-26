@@ -6,7 +6,7 @@ execfile("loadAll.py")
 
 # add the jar to your classpath, then import it
 # better to read WebSphere variable PROFILES_JDBC_DRIVER_HOME
-sys.path.append( '/opt/IBM/JDBC/db2jcc4.jar' )
+
 import com.ibm.db2.jcc.DB2Driver as Driver
 
 # Change User and Password
@@ -15,7 +15,7 @@ props.put( 'user', 'lcuser' )
 props.put( 'password', 'password' )
 
 # Change Hostname, Port and maybe DB Name
-conn = Driver().connect( 'jdbc:db2://cnxdb2.stoeps.local:50000/PEOPLEDB', props )
+conn = Driver().connect( 'jdbc:db2://cnxwin.stoeps.local:50000/PEOPLEDB', props )
 
 stmt = conn.createStatement()
 

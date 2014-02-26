@@ -1,3 +1,12 @@
+# To run this script with Windows or SLES, you have to modify setupCmdLine
+#
+# setupCmdLine.bat|sh
+# add on line 40: "SET WAS_USER_SCRIPT=d:\ibm\wasuserscript.cmd"
+#
+# Create d:\ibm\wasuserscript.cmd:
+# "SET WAS_EXT_DIRS=%WAS_EXT_DIRS%;c:\ibm\sqllib\java"
+#
+
 import os
 import sys
 from java.util import Properties
@@ -6,7 +15,7 @@ execfile("loadAll.py")
 
 # add the jar to your classpath, then import it
 # better to read WebSphere variable PROFILES_JDBC_DRIVER_HOME
-sys.path.append( '/opt/IBM/JDBC/db2jcc4.jar' )
+
 import com.ibm.db2.jcc.DB2Driver as Driver
 
 # Change User and Password

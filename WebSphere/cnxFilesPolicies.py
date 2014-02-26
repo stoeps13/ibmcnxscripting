@@ -1,4 +1,4 @@
-# cfgFilesPolicies.py
+# cnxFilesPolicies.py
 # Author: Christoph Stoettner
 # E-Mail: christoph.stoettner@stoeps.de
 # Blog: http://www.stoeps.de
@@ -10,19 +10,19 @@ execfile("filesAdmin.py")
 #def loadFilesAdmin():
 #    execfile( 'filesAdmin.py' )
 
-def deletePolicy( uuid ):
-    FilesPolicyService.delete( uuid )
-
-def addPolicy( title, maxSize ):
-    FilesPolicyService.add( title, maxSize * 1073741824.0 )
-
-def editPolicy( uuid, title, maxSize ):
-    FilesPolicyService.edit( uuid, title, maxSize )
-
-def getPolicies():
-    policies = FilesPolicyService.browse( "title", "true", 1, 25 )
-    return policies
-
+# def deletePolicy( uuid ):
+#     FilesPolicyService.delete( uuid )
+# 
+# def addPolicy( title, maxSize ):
+#     FilesPolicyService.add( title, maxSize * 1073741824.0 )
+# 
+# def editPolicy( uuid, title, maxSize ):
+#     FilesPolicyService.edit( uuid, title, maxSize )
+# 
+# def getPolicies():
+#     policies = FilesPolicyService.browse( "title", "true", 1, 25 )
+#     return policies
+# 
 def printPolicies( policies ):
     state = ''
     print '# \tmax Size \t\t uuid \t\t\t\t\t title'
@@ -37,7 +37,7 @@ def printPolicies( policies ):
             state = 'ADD'
             title = raw_input( 'Title of Policy: ' )
             maxSize = float( raw_input( 'max Library Size in GB: ' ) )
-            addPolicy( title, maxSize )
+            FilesPolicyService.add( title, maxSize * 1073741824.0 )
         elif state == 'E':
             state = 'EDIT'
             policy = int( raw_input( 'Policy ID to edit: ' ) )
@@ -49,11 +49,11 @@ def printPolicies( policies ):
                 maxSize = float( maxSize ) * 1073741824.0
             elif maxSize == '':
                 maxSize = float( policies[policy]['maximumSize'] )
-            editPolicy( policies[policy]['id'], title, maxSize )
+            FilesPolicyService.edit( policies[policy]['id'], title, maxSize )
         elif state == 'D':
             state = 'DELETE'
             policy = int( raw_input( 'Delete policy ID (#)? ' ) )
-            deletePolicy( policies[policy]['id'] )
+            FilesPolicyService.delete( policies[policy]['id'] )
         elif state == 'M':
             state = 'MENU'
             execfile( 'cnxmenu.py' )
@@ -65,7 +65,5 @@ def printPolicies( policies ):
             continue
 
 #loadFilesAdmin()
-policies = getPolicies()
+policies = FilesPolicyService.browse( "title", "true", 1, 25 )
 printPolicies( policies )
-
-

@@ -20,7 +20,7 @@ for db in dbs:    # loop through databases
             # print 'Error: %s is not available' % db
     except:
         if notInstDB != "All DB checked ":
-			notInstDB.append( db )
+            notInstDB.append( db )
 
 
 runDB.sort()
@@ -36,21 +36,21 @@ except:
     print '\t\tNo running DB'
 
 if notInstDB:
-	print ''
-	print '\tDB not installed: \n'
-	try:
-		for db in notInstDB:
-			print'\t\t' + db
-	except:
-		print '\t\tAll DB checked'
+    print ''
+    print '\tDB not installed: \n'
+    try:
+        for db in notInstDB:
+            print'\t\t' + db
+    except:
+        print '\t\tAll DB checked'
 
 if errorDB:
-	print ''
-	print '\tERROR connecting to: \n'
-	try:
-		for db in errorDB:
-			print '\t\t' + db
-	except:
-		print '\t\tAll DB running\n'
-	print ''
+    print ''
+    print '\tERROR connecting to: \n'
+    try:
+        for db in errorDB:
+            print '\t\t' + db
+    except:
+        print '\t\tAll DB running\n'
+    print ''
 

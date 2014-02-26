@@ -18,7 +18,7 @@ import os
 execfile( "profilesAdmin.py" )
 print "\nReading from file: " + sys.argv[0]
 
-myfile = open( sys.argv[1], 'r' )
+myfile = open( sys.argv[0], 'r' )
 for line in myfile.readlines():
     if( ";" in line ) :
         data = line.split( ";" )
