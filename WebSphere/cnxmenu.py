@@ -10,7 +10,7 @@ execfile( "filesAdmin.py" )
 
 class cnxMenu:
     menuitems = []
-        
+
     # Function to add menuitems
     def AddItem( self, text, function ):
         self.menuitems.append( {'text': text, 'func':function} )
@@ -28,7 +28,7 @@ class cnxMenu:
 
     def Do( self, n ):
         self.menuitems[n]["func"]()
-        
+
 def cfgDataSource():
     execfile( "cfgDataSource.py" )
 
@@ -89,7 +89,7 @@ def cnxMemberDeactAndActByEmail():
 def cnxMemberSyncAllByEXID():
     execfile( 'cnxMemberSyncAllByEXID.py' )
 
-def cnxCommunitiesReparenting()
+def cnxCommunitiesReparenting():
     execfile( 'cnxCommunitiesReparenting.py' )
 
 def bye():

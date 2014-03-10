@@ -1,5 +1,7 @@
 *.pyc
 *.class
+.project
+.pydevproject
 /videos
 /gui
 /cheatsheet.txt
