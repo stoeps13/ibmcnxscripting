@@ -1,4 +1,7 @@
 *.pyc
+.DS_Store
+.project
+.pydevproject
 *.class
 /videos
 /gui
