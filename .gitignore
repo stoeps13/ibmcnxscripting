@@ -1,2 +1,5 @@
 *.pyc
 *.class
+/videos
+/gui
+/cheatsheet.txt
