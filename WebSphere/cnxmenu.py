@@ -89,6 +89,9 @@ def cnxMemberDeactAndActByEmail():
 def cnxMemberSyncAllByEXID():
     execfile( 'cnxMemberSyncAllByEXID.py' )
 
+def cnxCommunitiesReparenting()
+    execfile( 'cnxCommunitiesReparenting.py' )
+
 def bye():
     print "bye"
     state = 'false'
@@ -116,6 +119,7 @@ if __name__ == "__main__":
     m.AddItem( 'Deactivate and Activate a User in one step (cnxMemberDeactAndActByEmail.py)', cnxMemberDeactAndActByEmail )
     m.AddItem( 'Deactivate a User by email address (cnxMemberInactivateByEmail.py)', cnxMemberInactivateByEmail )
     m.AddItem( 'Synchronize ExtID for all Users in all Apps (cnxMemberSyncAllByEXID.py)', cnxMemberSyncAllByEXID )
+    m.AddItem( 'Reparent/Move Communities (cnxCommunitiesReparenting.py)', cnxCommunitiesReparenting )
     m.AddItem( "Exit", bye )
 
 state = 'True'
