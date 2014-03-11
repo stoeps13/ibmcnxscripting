@@ -12,7 +12,7 @@ def getUUID( comm_name ):
     result = CommunitiesListService.filterListByName(allComm, comm_name)
     if not result:
         print 'There is NO Community with this name\nPlease try again ----------->' 
-        return (0,0,0)
+        return (0,0,0,0)
     else:
         comm_id = str(result)[str(result).find('uuid=')+5:str(result).find('uuid=')+41]
         comm_name = str(result)[str(result).find('name=')+5:str(result).find('uuid=')-2]
