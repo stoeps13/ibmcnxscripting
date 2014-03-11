@@ -11,7 +11,15 @@ import os
 import sys
 from java.util import Properties
 
-execfile("loadAll.py")
+# Load all jython commands, when they are not loaded
+try:
+    test = Scheduler.listAllTasks()
+    if test == '':
+        raise Exception
+except:
+    print 'Load Connections Commands'
+    execfile("loadAll.py")
+
 
 # add the jar to your classpath, then import it
 # better to read WebSphere variable PROFILES_JDBC_DRIVER_HOME

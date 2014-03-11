@@ -6,8 +6,14 @@
 # example: wsadmin.sh -lang jython -f memberSyncAllByEXID.py
 #
 
-# Loading Connections Administration Commands
-execfile( "loadAll.py" )
+# Load all jython commands, when they are not loaded
+try:
+    test = Scheduler.listAllTasks()
+    if test == '':
+        raise Exception
+except:
+    print 'Load Connections Commands'
+    execfile("loadAll.py")
 
 EmailMatch = ''
 while EmailMatch != ( 'TRUE' or 'FALSE' ):
