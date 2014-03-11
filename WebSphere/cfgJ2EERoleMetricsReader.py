@@ -12,11 +12,6 @@
 # History:
 # 20140225  Christoph Stoettner     Initial Version
 
-# import ibmcnxscript
-
-def setJ2EERole(appName,role_auth,role_users,role_groups):
-    AdminApp.edit( appName, '[-MapRolesToUsers [["metrics-reader" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
-        
 def printMenu():
     state = ''
     while state != ( 'ENABLE' or 'DISABLE' or 'EXIT' ):
@@ -32,7 +27,7 @@ def printMenu():
             break
         else:
             continue
-            
+
     if state == 'ENABLE':
         print 'Enable metrics-reader'
         auth = ''
@@ -44,19 +39,19 @@ def printMenu():
                 role_auth = 'No No'
         role_users = raw_input('Enable metrics-reader Role for single Users? (Type casesensitiv uid, empty for none, multiple uids seperate by \"|\")')
         role_groups = raw_input('Enable metrics-reader Role for a Group? (Type casesensitiv Groupname, empty for no groups, multiple Groups seperated by \"|\")')
-             
+
     elif state == 'DISABLE':
-        print 'Disable metrics-reader'   
+        print 'Disable metrics-reader'
         role_auth='No No'
         role_users=''
         role_groups=''
-        
-    apps = ['Activities','Blogs','Communities','Dogear','Files','Forums','Homepage','News','Profiles','Search','WidgetContainer','Wikis']    
-    for app in apps:     
+
+    apps = ['Activities','Blogs','Communities','Dogear','Files','Forums','Homepage','News','Profiles','Search','WidgetContainer','Wikis']
+    for app in apps:
         print "Setting Role for " + app
-        setJ2EERole(app,role_auth,role_users,role_groups)
-    
-    AdminConfig.save()       
-    
+        AdminApp.edit( app, '[-MapRolesToUsers [["metrics-reader" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
+
+    AdminConfig.save()
+
 
 printMenu()

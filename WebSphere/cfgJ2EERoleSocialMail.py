@@ -12,11 +12,6 @@
 # History:
 # 20140225  Christoph Stoettner     Initial Version
 
-# import ibmcnxscript
-
-def setJ2EERole(appName,role_auth,role_users,role_groups):
-    AdminApp.edit( appName, '[-MapRolesToUsers [["mail-user" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
-        
 def printMenu():
     state = ''
     while state != ( 'ENABLE' or 'DISABLE' or 'EXIT' ):
@@ -32,7 +27,7 @@ def printMenu():
             break
         else:
             continue
-            
+
     if state == 'ENABLE':
         print 'Enable socialmail'
         auth = ''
@@ -44,19 +39,19 @@ def printMenu():
                 role_auth = 'No No'
         role_users = raw_input('Enable Mail-User Role for single Users? (Type casesensitiv uid, empty for none, multiple uids seperate by \"|\")')
         role_groups = raw_input('Enable Mail-User Role for a Group? (Type casesensitiv Groupname, empty for no groups, multiple Groups seperated by \"|\")')
-             
+
     elif state == 'DISABLE':
-        print 'Disable socialmail'   
+        print 'Disable socialmail'
         role_auth='No No'
         role_users=''
         role_groups=''
-        
-    apps = ['Common','WidgetContainer']    
-    for app in apps:     
+
+    apps = ['Common','WidgetContainer']
+    for app in apps:
         print "Setting Role for " + app
-        setJ2EERole(app,role_auth,role_users,role_groups)
-    
-    AdminConfig.save()       
-    
+        AdminApp.edit( app, '[-MapRolesToUsers [["mail-user" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
+
+    AdminConfig.save()
+
 
 printMenu()

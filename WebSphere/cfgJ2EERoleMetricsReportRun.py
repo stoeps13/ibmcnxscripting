@@ -12,11 +12,6 @@
 # History:
 # 20140225  Christoph Stoettner     Initial Version
 
-# import ibmcnxscript
-
-def setJ2EERole(appName,roleName,role_auth,role_users,role_groups):
-    AdminApp.edit( appName, '[-MapRolesToUsers [["' + roleName + '" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
-        
 def printMenu():
     state = ''
     while state != ( 'ENABLE' or 'DISABLE' or 'EXIT' ):
@@ -32,7 +27,7 @@ def printMenu():
             break
         else:
             continue
-            
+
     if state == 'ENABLE':
         print 'Enable metrics-report-run'
         auth = ''
@@ -44,26 +39,26 @@ def printMenu():
                 role_auth = 'No No'
         role_users = raw_input('Enable metrics-report-run Role for single Users? (Type casesensitiv uid, empty for none, multiple uids seperate by \"|\")')
         role_groups = raw_input('Enable metrics-report-run Role for a Group? (Type casesensitiv Groupname, empty for no groups, multiple Groups seperated by \"|\")')
-             
+
     elif state == 'DISABLE':
-        print 'Disable metrics-report-run and community-metrics-run'   
+        print 'Disable metrics-report-run and community-metrics-run'
         role_auth='No No'
         role_users=''
         role_groups=''
-        
+
     apps = ['Communities']
     roleName = 'community-metrics-run'
-    for app in apps:     
+    for app in apps:
         print "Setting Role for " + app
-        setJ2EERole(app,roleName,role_auth,role_users,role_groups)
-        
+        AdminApp.edit( app, '[-MapRolesToUsers [["' + roleName + '" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
+
     apps = ['Common','Metrics']
-    roleName = 'metrics-report-run'   
-    for app in apps:     
+    roleName = 'metrics-report-run'
+    for app in apps:
         print "Setting Role for " + app
         setJ2EERole(app,roleName,role_auth,role_users,role_groups)
-    
-    AdminConfig.save()       
-    
+
+    AdminConfig.save()
+
 
 printMenu()

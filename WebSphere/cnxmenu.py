@@ -50,6 +50,18 @@ def cfgJ2EERolesRestricted():
 def cfgJ2EERolesUnrestricted():
     execfile( "cfgJ2EERolesUnrestricted.py" )
 
+def cfgJ2EERoleGlobalModerator():
+    execfile( "cfgJ2EERoleGlobalModerator.py" )
+
+def cfgJ2EERoleMetricsReader():
+    execfile( "cfgJ2EERoleMetricsReader.py" )
+
+def cfgJ2EERoleMetricsReportRun():
+    execfile( "cfgJ2EERoleMetricsReportRun.py" )
+
+def cfgJ2EERoleSocialMail():
+    execfile( "cfgJ2EERoleSocialMail.py" )
+
 def cfgJVMHeap():
     execfile( "cfgJVMHeap.py" )
 
@@ -110,6 +122,10 @@ if __name__ == "__main__":
     m.AddItem( 'Restore J2EE Roles of all Applications (cfgJ2EERoleRestore.py)', cfgJ2EERoleRestore )
     m.AddItem( 'Set J2EE Roles initially (restricted) (cfgJ2EERolesRestricted.py)', cfgJ2EERolesRestricted )
     m.AddItem( 'Set J2EE Roles initially (unrestricted) (cfgJ2EERolesUnrestricted.py)', cfgJ2EERolesUnrestricted )
+    m.AddItem( 'Set J2EE Roles for Moderator Roles (cfgJ2EERoleGlobalModerator.py)', cfgJ2EERoleGlobalModerator )
+    m.AddItem( 'Set J2EE Role for Metrics Reader (cfgJ2EERoleMetricsReader.py)', cfgJ2EERoleMetricsReader )
+    m.AddItem( 'Set J2EE Role for Metrics Report Run (cfgJ2EERoleMetricsReportRun)', cfgJ2EERoleMetricsReportRun )
+    m.AddItem( 'Set J2EE Role for SocialMail (cfgJ2EERoleSocialMail)', cfgJ2EERoleSocialMail )
     m.AddItem( 'Configure JVM Heap Sizes (cfgJVMHeap.py)', cfgJVMHeap )
     m.AddItem( 'Configure SystemOut/Err Log Size (cfgLogFiles.py)', cfgLogFiles )
     m.AddItem( 'Configure Monitoring Policy (cfgMonitoringPolicy.py)', cfgMonitoringPolicy )
