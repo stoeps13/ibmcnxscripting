@@ -5,8 +5,14 @@
 # E-Mail: christoph.stoettner@stoeps.de
 #
 
-# Loading Connections Administration Commands
-execfile( "loadAll.py" )
+# Load all jython commands, when they are not loaded
+try:
+    test = Scheduler.listAllTasks()
+    if test == '':
+        raise Exception
+except:
+    print 'Load Connections Commands'
+    execfile("loadAll.py")
 
 MAILADDRESS = raw_input( 'Mailaddress to deactivate User: ' )
 

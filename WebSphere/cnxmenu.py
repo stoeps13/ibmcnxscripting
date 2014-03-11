@@ -5,8 +5,14 @@
 import sys
 import os
 
-# Load Files commands, is needed for some further scripts
-execfile( "filesAdmin.py" )
+# Load all jython commands, when they are not loaded
+try:
+    test = Scheduler.listAllTasks()
+    if test == '':
+        raise Exception
+except:
+    print 'Load Connections Commands'
+    execfile("loadAll.py")
 
 class cnxMenu:
     menuitems = []
