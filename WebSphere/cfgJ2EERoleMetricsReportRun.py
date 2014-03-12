@@ -46,19 +46,20 @@ def printMenu():
         role_users=''
         role_groups=''
 
-    apps = ['Communities']
-    roleName = 'community-metrics-run'
-    for app in apps:
-        print "Setting Role for " + app
-        AdminApp.edit( app, '[-MapRolesToUsers [["' + roleName + '" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
+    if state != 'EXIT':
+        apps = ['Communities']
+        roleName = 'community-metrics-run'
+        for app in apps:
+            print "Setting Role for " + app
+            AdminApp.edit( app, '[-MapRolesToUsers [["' + roleName + '" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
 
-    apps = ['Common','Metrics']
-    roleName = 'metrics-report-run'
-    for app in apps:
-        print "Setting Role for " + app
-        setJ2EERole(app,roleName,role_auth,role_users,role_groups)
+        apps = ['Common','Metrics']
+        roleName = 'metrics-report-run'
+        for app in apps:
+            print "Setting Role for " + app
+            AdminApp.edit( app, '[-MapRolesToUsers [["' + roleName + '" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
 
-    AdminConfig.save()
+        AdminConfig.save()
 
 
 printMenu()

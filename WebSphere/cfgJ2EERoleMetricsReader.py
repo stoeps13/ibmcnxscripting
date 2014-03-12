@@ -46,12 +46,11 @@ def printMenu():
         role_users=''
         role_groups=''
 
-    apps = ['Activities','Blogs','Communities','Dogear','Files','Forums','Homepage','News','Profiles','Search','WidgetContainer','Wikis']
-    for app in apps:
-        print "Setting Role for " + app
-        AdminApp.edit( app, '[-MapRolesToUsers [["metrics-reader" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
-
-    AdminConfig.save()
-
+    if state != 'EXIT':
+        apps = ['Activities','Blogs','Communities','Dogear','Files','Forums','Homepage','News','Profiles','Search','WidgetContainer','Wikis']
+        for app in apps:
+            print "Setting Role for " + app
+            AdminApp.edit( app, '[-MapRolesToUsers [["metrics-reader" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
+        AdminConfig.save()
 
 printMenu()

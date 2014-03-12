@@ -8,11 +8,9 @@
 
 # Load all jython commands, when they are not loaded
 try:
-    test = Scheduler.listAllTasks()
-    if test == '':
-        raise Exception
-except:
-    print 'Load Connections Commands'
+    NewsActivityStreamService.listApplicationRegistrations()
+except NameError:
+    print "Connections Commands not loaded! Load now: "
     execfile("loadAll.py")
 
 EmailMatch = ''

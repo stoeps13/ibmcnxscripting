@@ -46,12 +46,12 @@ def printMenu():
         role_users=''
         role_groups=''
 
-    apps = ['Blogs','Common','Communities','Files','Forums','Moderation','WidgetContainer']
-    for app in apps:
-        print "Setting Role for " + app
-        AdminApp.edit( app, '[-MapRolesToUsers [["global-moderator" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
-
-    AdminConfig.save()
+    if state != 'EXIT':
+        apps = ['Blogs','Common','Communities','Files','Forums','Moderation','WidgetContainer']
+        for app in apps:
+            print "Setting Role for " + app
+            AdminApp.edit( app, '[-MapRolesToUsers [["global-moderator" ' + role_auth + ' "' + role_users + '" "' + role_groups + '" ]]]' )
+        AdminConfig.save()
 
 
 printMenu()
