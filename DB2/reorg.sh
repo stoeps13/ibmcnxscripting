@@ -4,17 +4,18 @@
 # copy this script in the path of your instance owner (db2inst1)
 # e.g. /home/db2inst1
 #
-# Go to the Wizards-folder/connections.sql/
+# Go to the Connections_Install/connections.sql/
 # and call the script
 #
-# Author: Christoph Stoettner
-# E-Mail: christoph.stoettner@stoeps.de
+# Author: Christoph Stoettner, Klaus Bild
+# E-Mail: christoph.stoettner@stoeps.de, klaus.bild@gmail.com
 #
 # line end with @
-for db in activities blogs cognos communities dogear files forum libraries.gcd libraries.os metrics mobile wikis ; do
-	db2 -td@ -vf $db/db2/reorg.sql
-done
-# homepage and profiles use ; for line end
-for db in homepage profiles ; do
-	db2 -tvf $db/db2/reorg.sql
+find . -name "reorg.sql" -print0 | while read -d $'\0' file
+do
+   if grep -q 'homepage\|profiles' <<<$file; then
+      db2 -tvf $file
+   else
+      db2 -td@ -vf $file
+   fi
 done

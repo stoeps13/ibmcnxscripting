@@ -1,3 +1,12 @@
-FOR %A IN (activities blogs cognos communities dogear files forum libraries.gcd libraries.os metrics mobile wikis) DO db2 -td@ -vf %A\db2\reorg.sql
-
-FOR %A IN (homepage profiles) DO db2 -tvf %A\db2\reorg.sql
+# Script for IBM Connections Database reorganisation
+#
+# copy this script to the Connections_Install/connections.sql/
+# and call the script
+#
+# Author: Klaus Bild
+# E-Mail: klaus.bild@gmail.com
+#
+FOR /f %%a IN ('dir /b/s reorg.sql') DO (
+	echo %%a
+	ECHO.%%a|findstr "profiles homepage" >nul&IF ERRORLEVEL 1 (DB2CMD.EXE -c -w -i db2 -td@ -vf %%a) ELSE (DB2CMD.EXE -c -w -i db2 -tvf %%a)
+)
