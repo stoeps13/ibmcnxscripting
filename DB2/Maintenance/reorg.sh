@@ -4,8 +4,12 @@
 # copy this script in the path of your instance owner (db2inst1)
 # e.g. /home/db2inst1
 #
-# Go to the Connections_Install/connections.sql/
+# Go to the Connections_install/connections.sql/
 # and call the script
+#
+# Connections_install/connections.sql only work when your db2 is installed on your
+# connections / websphere host. You can copy the folder or use the Connections_Wizard
+# directory instead
 #
 # Author: Christoph Stoettner, Klaus Bild
 # E-Mail: christoph.stoettner@stoeps.de, klaus.bild@gmail.com
