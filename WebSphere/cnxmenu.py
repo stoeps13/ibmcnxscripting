@@ -63,6 +63,9 @@ def cfgJ2EERoleSocialMail():
 def cfgJVMHeap():
     execfile( "cfgJVMHeap.py" )
 
+def cfgJVMCustProp():
+    execfile( "cfgJVMCustProp.py" )
+
 def cfgLogFiles():
     execfile( "cfgLogFiles.py" )
 
@@ -127,6 +130,7 @@ if __name__ == "__main__":
     m.AddItem( 'Configure JVM Heap Sizes (cfgJVMHeap.py)', cfgJVMHeap )
     m.AddItem( 'Configure SystemOut/Err Log Size (cfgLogFiles.py)', cfgLogFiles )
     m.AddItem( 'Configure Monitoring Policy (cfgMonitoringPolicy.py)', cfgMonitoringPolicy )
+    m.AddItem( 'Add a custom Property to JVM (Load issue) - (cfgJVMCustProp.py)', cfgJVMCustProp )
     m.AddItem( 'Check if all Apps are running (checkAppStatus.py)', checkAppStatus )
     m.AddItem( 'Check Database connections (checkDataSource.py)', checkDataSource )
     m.AddItem( 'Check JVM Heap Sizes (checkJVMHeap.py)', checkJVMHeap )
