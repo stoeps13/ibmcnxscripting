@@ -1,0 +1,167 @@
+#!/bin/bash
+
+#######################################################
+# Authors                                             #
+#######################################################
+# Tim Clark www.tc-soft.com                           #
+# Sharon Bellamey www.cube-soft.co.uk                 #
+# (c)November 2013                                    #
+# Please copy at will but attribute authors           #
+#######################################################
+
+#######################################################
+# Variables                                           #
+#######################################################
+# Please ammend these to match your local environment #
+#######################################################
+WSDM=/opt/IBM/WebSphere/AppServer/profiles/Dmgr01/bin   # WebSphere Deployment Manager path
+WAS=/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin  # WebSphere Application Server path
+NRU=wasadmin                                            # NonRootUser that owns WebSphere instance if not 'root'
+N=ConnCtrl
+# Connections Servers #
+# This is whatever you called the Connections server instances #
+CS=IC45_server1
+CS1=pcf_server1
+CS2=infra_server1
+CS3=apps_server1
+CS4=fw_server1
+
+#######################################################
+# Start Script                                        #
+#######################################################
+case "$3" in
+nru)
+    case "$1" in
+    start)
+        su - $NRU
+        cd $WSDM
+        ./startManager.sh 
+        cd $WAS
+        ./startNode.sh
+        case "$2" in
+            0)
+                ./startServer.sh $CS
+                ;;
+            3)
+                ./startServer.sh $CS1
+                ./startServer.sh $CS2
+                ./startServer.sh $CS3
+                ;;
+            4)
+                ./startServer.sh $CS1
+                ./startServer.sh $CS2
+                ./startServer.sh $CS3
+                ./startServer.sh $CS4
+                ;;
+            *)
+                echo "Usage: $N {start|stop} {0|3|4} {nru}"
+                echo "0=just 1 IC server, 3=3 IC servers & 4=4IC servers"
+                echo "nru = if you are using a user other than root"
+                exit 1
+                ;;
+        esac
+        ;;
+    stop)
+        cd $WAS
+        case "$2" in
+            0)
+                ./stopServer.sh $CS
+                ;;
+            3)
+                ./stopServer.sh $CS3
+                ./stopServer.sh $CS2
+                ./stopServer.sh $CS1
+                ;;
+            4)
+                ./stopServer.sh $CS4
+                ./stopServer.sh $CS3
+                ./stopServer.sh $CS2
+                ./stopServer.sh $CS1
+                ;;
+            *)
+                echo "Usage: $N {start|stop} {0|3|4} {nru}"
+                echo "0=just 1 IC server, 3=3 IC servers & 4=4IC servers"
+                echo "nru = if you are using a user other than root"
+                exit 1
+                ;;
+        esac
+        ./stopNode.sh
+        cd $WSDM
+        ./stopManager.sh
+        ;;
+    *)
+            echo "Usage: $N {start|stop} {0|3|4} {nru}"
+            echo "0=just 1 IC server, 3=3 IC servers & 4=4IC servers"
+            echo "nru = if you are using a user other than root"
+        exit 1
+        ;;
+    esac
+    ;;
+*)
+    case "$1" in
+    start)
+        cd $WSDM
+        ./startManager.sh 
+        cd $WAS
+        ./startNode.sh
+        case "$2" in
+            0)
+                ./startServer.sh $CS
+                ;;
+            3)
+                ./startServer.sh $CS1
+                ./startServer.sh $CS2
+                ./startServer.sh $CS3
+                ;;
+            4)
+                ./startServer.sh $CS1
+                ./startServer.sh $CS2
+                ./startServer.sh $CS3
+                ./startServer.sh $CS4
+                ;;
+            *)
+                echo "Usage: $N {start|stop} {0|3|4} {nru}"
+                echo "0=just 1 IC server, 3=3 IC servers & 4=4IC servers"
+                echo "nru = if you are using a user other than root"
+                exit 1
+                ;;
+        esac
+        ;;
+    stop)
+        cd $WAS
+        case "$2" in
+            0)
+                ./stopServer.sh $CS
+                ;;
+            3)
+                ./stopServer.sh $CS3
+                ./stopServer.sh $CS2
+                ./stopServer.sh $CS1
+                ;;
+            4)
+                ./stopServer.sh $CS4
+                ./stopServer.sh $CS3
+                ./stopServer.sh $CS2
+                ./stopServer.sh $CS1
+                ;;
+            *)
+                echo "Usage: $N {start|stop} {0|3|4} {nru}"
+                echo "0=just 1 IC server, 3=3 IC servers & 4=4IC servers"
+                echo "nru = if you are using a user other than root"
+                exit 1
+                ;;
+        esac
+        ./stopNode.sh
+        cd $WSDM
+        ./stopManager.sh
+        ;;
+    *)
+            echo "Usage: $N {start|stop} {0|3|4} {nru}"
+            echo "0=just 1 IC server, 3=3 IC servers & 4=4IC servers"
+            echo "nru = if you are using a user other than root"
+        exit 1
+        ;;
+    esac
+    ;;
+esac
+exit 0
