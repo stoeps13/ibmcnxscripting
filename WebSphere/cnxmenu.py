@@ -69,6 +69,9 @@ def cfgLogFiles():
 def cfgMonitoringPolicy():
     execfile( 'cfgMonitoringPolicy.py' )
 
+def cfgJVMCustProp():
+    execfile( 'cfgJVMCustProp.py' )
+
 def checkAppStatus():
     execfile( 'checkAppStatus.py' )
 
@@ -107,7 +110,7 @@ def cnxMemberSyncAllByEXID():
 
 def cnxCommunitiesReparenting():
     execfile( 'cnxCommunitiesReparenting.py' )
-	
+
 def cnxmenu_cfgtasks():
 	execfile( 'cnxmenu_cfgtasks.py' )
 
@@ -119,7 +122,7 @@ def cnxmenu_comm():
 
 def cnxmenu_checks():
 	execfile( 'cnxmenu_checks.py' )
-	
+
 def bye():
     print "bye"
     state = 'false'
@@ -171,7 +174,7 @@ while state == 'True':
     while not is_valid :
         try :
                 n = int ( raw_input('Enter your choice [1-5] : ') )
-				
+
                 if n < 6 and n > 0:
 				    is_valid = 1 ## set it to 1 to validate input and to terminate the while..not loop
                 else:

@@ -15,7 +15,7 @@ except NameError:
 
 class cnxMenu_cfgtasks:
     menuitems = []
-        
+
     # Function to add menuitems
     def AddItem( self, text, function ):
         self.menuitems.append( {'text': text, 'func':function} )
@@ -33,7 +33,7 @@ class cnxMenu_cfgtasks:
 
     def Do( self, n ):
         self.menuitems[n]["func"]()
-        
+
 
 def cfgDataSource():
     execfile( "cfgDataSource.py" )
@@ -65,6 +65,9 @@ def cfgJ2EERoleSocialMail():
 def cfgJVMHeap():
     execfile( "cfgJVMHeap.py" )
 
+def cfgJVMCustProp():
+    execfile( "cfgJVMCustProp.py" )
+
 def cfgLogFiles():
     execfile( "cfgLogFiles.py" )
 
@@ -74,7 +77,7 @@ def cfgMonitoringPolicy():
 
 def cnxBackToMainMenu():
     execfile( 'cnxmenu.py')
-	
+
 def bye():
     print "bye"
     state = 'false'
@@ -92,6 +95,7 @@ if __name__ == "__main__":
     m.AddItem( 'Set J2EE Role for Metrics Report Run (cfgJ2EERoleMetricsReportRun)', cfgJ2EERoleMetricsReportRun )
     m.AddItem( 'Set J2EE Role for SocialMail (cfgJ2EERoleSocialMail)', cfgJ2EERoleSocialMail )
     m.AddItem( 'Configure JVM Heap Sizes (cfgJVMHeap.py)', cfgJVMHeap )
+    m.AddItem( 'Set Custom Parameter for Cache Issues in JVM (cfgJVMCustProp.py)', cfgJVMCustProp )
     m.AddItem( 'Configure SystemOut/Err Log Size (cfgLogFiles.py)', cfgLogFiles )
     m.AddItem( 'Configure Monitoring Policy (cfgMonitoringPolicy.py)', cfgMonitoringPolicy )
     m.AddItem( 'Work with Files Policies (cnxFilesPolicies.py)', cnxFilesPolicies )
@@ -112,7 +116,7 @@ while state == 'True':
     while not is_valid :
         try :
                 n = int ( raw_input('Enter your choice [1-16] : ') )
-				
+
                 if n < 17 and n > 0:
 				    is_valid = 1 ## set it to 1 to validate input and to terminate the while..not loop
                 else:
