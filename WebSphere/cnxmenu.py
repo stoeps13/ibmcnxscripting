@@ -63,9 +63,6 @@ def cfgJ2EERoleSocialMail():
 def cfgJVMHeap():
     execfile( "cfgJVMHeap.py" )
 
-def cfgJVMCustProp():
-    execfile( "cfgJVMCustProp.py" )
-
 def cfgLogFiles():
     execfile( "cfgLogFiles.py" )
 
@@ -110,7 +107,19 @@ def cnxMemberSyncAllByEXID():
 
 def cnxCommunitiesReparenting():
     execfile( 'cnxCommunitiesReparenting.py' )
+	
+def cnxmenu_cfgtasks():
+	execfile( 'cnxmenu_cfgtasks.py' )
 
+def cnxmenu_useradmin():
+	execfile( 'cnxmenu_useradmin.py' )
+
+def cnxmenu_comm():
+	execfile( 'cnxmenu_comm.py' )
+
+def cnxmenu_checks():
+	execfile( 'cnxmenu_checks.py' )
+	
 def bye():
     print "bye"
     state = 'false'
@@ -118,36 +127,56 @@ def bye():
 
 if __name__ == "__main__":
     m = cnxMenu()
-    m.AddItem( "Configure DataSources (cfgDataSource.py)", cfgDataSource )
-    m.AddItem( 'Backup J2EE Roles of all Applications (cfgJ2EERoleBackup.py)', cfgJ2EERoleBackup )
-    m.AddItem( 'Restore J2EE Roles of all Applications (cfgJ2EERoleRestore.py)', cfgJ2EERoleRestore )
-    m.AddItem( 'Set J2EE Roles initially (restricted) (cfgJ2EERolesRestricted.py)', cfgJ2EERolesRestricted )
-    m.AddItem( 'Set J2EE Roles initially (unrestricted) (cfgJ2EERolesUnrestricted.py)', cfgJ2EERolesUnrestricted )
-    m.AddItem( 'Set J2EE Roles for Moderator Roles (cfgJ2EERoleGlobalModerator.py)', cfgJ2EERoleGlobalModerator )
-    m.AddItem( 'Set J2EE Role for Metrics Reader (cfgJ2EERoleMetricsReader.py)', cfgJ2EERoleMetricsReader )
-    m.AddItem( 'Set J2EE Role for Metrics Report Run (cfgJ2EERoleMetricsReportRun)', cfgJ2EERoleMetricsReportRun )
-    m.AddItem( 'Set J2EE Role for SocialMail (cfgJ2EERoleSocialMail)', cfgJ2EERoleSocialMail )
-    m.AddItem( 'Configure JVM Heap Sizes (cfgJVMHeap.py)', cfgJVMHeap )
-    m.AddItem( 'Configure SystemOut/Err Log Size (cfgLogFiles.py)', cfgLogFiles )
-    m.AddItem( 'Configure Monitoring Policy (cfgMonitoringPolicy.py)', cfgMonitoringPolicy )
-    m.AddItem( 'Add a custom Property to JVM (Load issue) - (cfgJVMCustProp.py)', cfgJVMCustProp )
-    m.AddItem( 'Check if all Apps are running (checkAppStatus.py)', checkAppStatus )
-    m.AddItem( 'Check Database connections (checkDataSource.py)', checkDataSource )
-    m.AddItem( 'Check JVM Heap Sizes (checkJVMHeap.py)', checkJVMHeap )
-    m.AddItem( 'Check SystemOut/Err Log Sizes (checkLogFiles.py)', checkLogFiles )
-    m.AddItem( 'Check / Show all used ports (checkPorts.py)', checkPorts )
-    m.AddItem( 'Show WebSphere Variables (checkVariables.py)', checkVariables )
-    m.AddItem( 'Work with Files Policies (cnxFilesPolicies.py)', cnxFilesPolicies )
-    m.AddItem( 'Work with Libraries (cnxLibraryPolicies.py)', cnxLibraryPolicies )
-    m.AddItem( 'Check External ID (all Apps & Profiles) (cnxMemberCheckExIDByEmail.py)', cnxMemberCheckExIDByEmail )
-    m.AddItem( 'Deactivate and Activate a User in one step (cnxMemberDeactAndActByEmail.py)', cnxMemberDeactAndActByEmail )
-    m.AddItem( 'Deactivate a User by email address (cnxMemberInactivateByEmail.py)', cnxMemberInactivateByEmail )
-    m.AddItem( 'Synchronize ExtID for all Users in all Apps (cnxMemberSyncAllByEXID.py)', cnxMemberSyncAllByEXID )
-    m.AddItem( 'Reparent/Move Communities (cnxCommunitiesReparenting.py)', cnxCommunitiesReparenting )
+#    m.AddItem( "Configure DataSources (cfgDataSource.py)", cfgDataSource )
+#    m.AddItem( 'Backup J2EE Roles of all Applications (cfgJ2EERoleBackup.py)', cfgJ2EERoleBackup )
+#    m.AddItem( 'Restore J2EE Roles of all Applications (cfgJ2EERoleRestore.py)', cfgJ2EERoleRestore )
+#    m.AddItem( 'Set J2EE Roles initially (restricted) (cfgJ2EERolesRestricted.py)', cfgJ2EERolesRestricted )
+#    m.AddItem( 'Set J2EE Roles initially (unrestricted) (cfgJ2EERolesUnrestricted.py)', cfgJ2EERolesUnrestricted )
+#    m.AddItem( 'Set J2EE Roles for Moderator Roles (cfgJ2EERoleGlobalModerator.py)', cfgJ2EERoleGlobalModerator )
+#    m.AddItem( 'Set J2EE Role for Metrics Reader (cfgJ2EERoleMetricsReader.py)', cfgJ2EERoleMetricsReader )
+#    m.AddItem( 'Set J2EE Role for Metrics Report Run (cfgJ2EERoleMetricsReportRun)', cfgJ2EERoleMetricsReportRun )
+#    m.AddItem( 'Set J2EE Role for SocialMail (cfgJ2EERoleSocialMail)', cfgJ2EERoleSocialMail )
+#    m.AddItem( 'Configure JVM Heap Sizes (cfgJVMHeap.py)', cfgJVMHeap )
+#    m.AddItem( 'Configure SystemOut/Err Log Size (cfgLogFiles.py)', cfgLogFiles )
+#    m.AddItem( 'Configure Monitoring Policy (cfgMonitoringPolicy.py)', cfgMonitoringPolicy )
+#    m.AddItem( 'Check if all Apps are running (checkAppStatus.py)', checkAppStatus )
+#    m.AddItem( 'Check Database connections (checkDataSource.py)', checkDataSource )
+#    m.AddItem( 'Check JVM Heap Sizes (checkJVMHeap.py)', checkJVMHeap )
+#    m.AddItem( 'Check SystemOut/Err Log Sizes (checkLogFiles.py)', checkLogFiles )
+#    m.AddItem( 'Check / Show all used ports (checkPorts.py)', checkPorts )
+#    m.AddItem( 'Show WebSphere Variables (checkVariables.py)', checkVariables )
+#    m.AddItem( 'Work with Files Policies (cnxFilesPolicies.py)', cnxFilesPolicies )
+#    m.AddItem( 'Work with Libraries (cnxLibraryPolicies.py)', cnxLibraryPolicies )
+#    m.AddItem( 'Check External ID (all Apps & Profiles) (cnxMemberCheckExIDByEmail.py)', cnxMemberCheckExIDByEmail )
+#    m.AddItem( 'Deactivate and Activate a User in one step (cnxMemberDeactAndActByEmail.py)', cnxMemberDeactAndActByEmail )
+#    m.AddItem( 'Deactivate a User by email address (cnxMemberInactivateByEmail.py)', cnxMemberInactivateByEmail )
+#    m.AddItem( 'Synchronize ExtID for all Users in all Apps (cnxMemberSyncAllByEXID.py)', cnxMemberSyncAllByEXID )
+#    m.AddItem( 'Reparent/Move Communities (cnxCommunitiesReparenting.py)', cnxCommunitiesReparenting )
+    m.AddItem( 'Menu - IBM Connections Configuration Tasks', cnxmenu_cfgtasks )
+    m.AddItem( 'Menu - IBM Connections/WebSphere Check Tasks', cnxmenu_checks )
+    m.AddItem( 'Menu - IBM Connections User Admin Tasks', cnxmenu_useradmin )
+    m.AddItem( 'Menu - IBM Connections Community Admin Tasks', cnxmenu_comm )
     m.AddItem( "Exit", bye )
 
 state = 'True'
 while state == 'True':
     m.Show()
-    n = input( "your choice> " )
+
+    ###########################
+    ## Robust error handling ##
+    ## only accept int       ##
+    ###########################
+    ## Wait for valid input in while...not ###
+    is_valid=0
+    while not is_valid :
+        try :
+                n = int ( raw_input('Enter your choice [1-5] : ') )
+				
+                if n < 6 and n > 0:
+				    is_valid = 1 ## set it to 1 to validate input and to terminate the while..not loop
+                else:
+                    print ( "'%s' is not a valid menu option.") % n
+        except ValueError, e :
+                print ("'%s' is not a valid integer." % e.args[0].split(": ")[1])
+   # n = input( "your choice> " )
     m.Do( n - 1 )
