@@ -11,6 +11,7 @@
 
 # History:
 # 20140225  Christoph Stoettner     Initial Version
+# 20140406  Christoph Stoettner     Bugfixing Version
 
 def printMenu():
     state = ''
@@ -35,8 +36,12 @@ def printMenu():
             auth = raw_input('Enable Mail-User Role for \"All-Authenticated in Realm\"? (Y|N)(YES|NO)').upper()
             if auth == 'Y':
                 role_auth = 'No Yes'
-            else:
+                break
+            elif auth == 'N':
                 role_auth = 'No No'
+                break
+            else:
+                continue
         role_users = raw_input('Enable Mail-User Role for single Users? (Type casesensitiv uid, empty for none, multiple uids seperate by \"|\")')
         role_groups = raw_input('Enable Mail-User Role for a Group? (Type casesensitiv Groupname, empty for no groups, multiple Groups seperated by \"|\")')
 
