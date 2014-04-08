@@ -4,7 +4,7 @@ REM Author: Klaus Bild
 REM E-Mail: klaus.bild@gmail.com
 REM
 REM History:    20140210   Klaus Bild           Initial Version
-                20140408   Christoph Stoettner  Fix for caseinsensitiv findstr
+REM             20140408   Christoph Stoettner  Fix for caseinsensitiv findstr
 
 REM Needed for variable expansion
 SETLOCAL ENABLEDELAYEDEXPANSION
