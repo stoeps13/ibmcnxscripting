@@ -29,7 +29,7 @@ perf = {'activities':{'minConnections':1, 'maxConnections':50},
 
 statementCacheSize = 100    # change to 50 for oracle
 
-print 'DataSource Parameters are set to: '
+print 'DataSource Parameters will be set to: '
 print 'Database \t statementCacheSize \t minConnections \t maxConnections'
 for db in perf.keys():
     print db.upper(),
