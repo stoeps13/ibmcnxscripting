@@ -4,6 +4,16 @@
 # Blog: http://kbild.ch
 # Description: Add webserver to all app/modules
 
+nodes = AdminTask.listNodes().splitlines()
+for node in nodes:
+ webservers = AdminTask.listServers('[-serverType WEB_SERVER -nodeName ' + node + ']').splitlines()
+ for webserver in webservers:
+  srv = webserver.split( '/' )
+  cell = srv[1]
+  node = srv[3]
+  webserverName = AdminConfig.showAttribute(webserver, 'name')
+  fullWebServerName="WebSphere:cell=" + cell + ",node=" + node + ",server=" + webserverName
+
 def getServerList( app, webserver):
    addServer="NEW"
    addedServers=""
@@ -21,7 +31,7 @@ def getServerList( app, webserver):
 
 
 def getCommand ( app):
-   addServers=getServerList(app, 'WebSphere:cell=connectionsCell01,node=webserver1,server=webserver1')
+   addServers=getServerList(app, fullWebServerName)
 
    module_ids = AdminApp.listModules(app).splitlines()
    command = "AdminApp.edit(app, '[ -MapModulesToServers ["
