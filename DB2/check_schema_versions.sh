@@ -114,6 +114,21 @@ then
     if [ $mobile -ne 7 ]; then echo "Mobile Schema Version is wrong:" $mobile " but should be 7"; error=1; fi
     if [ $profiles -ne 46 ]; then echo "Profiles Schema Version is wrong:" $profiles " but should be 46"; error=1; fi
     if [ $wikis -ne 107 ]; then echo "Wikis Schema Version is wrong:" $wikis " but should be 107"; error=1;  fi
+elif [ $homepage -eq 479 ]
+then
+    printf "\nLooks like you have a Connections 5 CR3 Installation\n\n"
+    if [ $activity -ne 72 ]; then echo "Activity Schema Version is wrong:" $activity " but should be 72"; error=1; fi
+    if [ $blogs -ne 72 ]; then echo "Blogs Schema Version is wrong:" $blogs " but should be 72"; error=1; fi
+    if [ $community -ne 98 ]; then echo "Community Schema Version is wrong:" $community " but should be 98"; error=1; fi
+    if [ $calendar -ne 30 ]; then echo "Calendar Schema Version is wrong:" $calendar " but should be 30"; error=1; fi
+    if [ $dogear -ne 22 ]; then echo "Dogear Schema Version is wrong:" $dogear " but should be 22"; error=1; fi
+    if [ $files -ne 107 ]; then echo "Files Schema Version is wrong:" $files " but should be 107"; error=1; fi
+    if [ $push -ne 6 ]; then echo "Push Notifications Schema Version is wrong:" $push " but should be 6"; error=1; fi
+    if [ $forum -ne 36 ]; then echo "Forum Schema Version is wrong:" $forum " but should be 36"; error=1; fi
+    if [ $metrics -ne 38 ]; then echo "Metrics Schema Version is wrong:" $metrics " but should be 38"; error=1; fi
+    if [ $mobile -ne 7 ]; then echo "Mobile Schema Version is wrong:" $mobile " but should be 7"; error=1; fi
+    if [ $profiles -ne 46 ]; then echo "Profiles Schema Version is wrong:" $profiles " but should be 46"; error=1; fi
+    if [ $wikis -ne 107 ]; then echo "Wikis Schema Version is wrong:" $wikis " but should be 107"; error=1;  fi
 else
     echo "Looks like you have NOT a Connections 5 Installation"
 fi
