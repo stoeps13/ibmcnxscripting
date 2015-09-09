@@ -40,7 +40,7 @@ def getCommand ( app):
      module_id = module_id[start+1:].replace("+", ",")
      endpoint = AdminApp.view(app).find(module_id)
      startpoint = AdminApp.view(app).rfind('Module:', 0, endpoint)
-     module_name = AdminApp.view(app)[startpoint+9:endpoint-7]
+     module_name = AdminApp.view(app)[startpoint+9:endpoint-8]
      module_name = '"' + module_name + '"'
      command += "[ " + module_name + " " + module_id + " " + addServers + " ]"
    command += "]]' )"
