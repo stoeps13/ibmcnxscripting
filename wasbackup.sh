@@ -1,6 +1,10 @@
 #!/bin/bash
 
+# Create a configuration backup of WebSphere Application Server
+
+# Change to your WebSphere Root Folder
 export WAS_HOME=/opt/IBM/WebSphere/AppServer
+# Path to store backup
 export WAS_BCK_PATH=/mnt/data/wasbackup
 
 cd $WAS_HOME/bin
