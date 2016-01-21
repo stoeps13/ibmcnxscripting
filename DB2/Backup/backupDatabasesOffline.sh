@@ -12,5 +12,9 @@ databases=$(db2 list database directory | grep alias | awk '{print $4}' | sort)
 for database in ${databases[@]}
 do
  echo $database
+<<<<<<< HEAD
 db2 backup database $database to $DBBACKUPPATH
+=======
+db2 backup database $database to $DBBACKUPPATH COMPRESS
+>>>>>>> DB2 Backup Scripts, script to add wasadmin to profiles
 done
