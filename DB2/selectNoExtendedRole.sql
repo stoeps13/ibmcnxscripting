@@ -5,16 +5,17 @@
   Call this script with "db2 -tvf selectNoExtendedRole.sql", it will generate a
   result file named mail.txt
 
-  You can copy this script to DMGR/bin and use it like:
+  You can copy this result file to DMGR/bin and use it like:
   wsadmin.sh -lang jython -c 'ProfilesService.setBatchRole(EMPLOYEE_EXTENDED, "mail.txt")'
 
   Then all users get the role EMPLOYEE_EXTENDED
 
   --
-  
+
   Author: Christoph Stoettner
   E-Mail: christoph.stoettner@stoeps.de
   Date: 2016-01-20
+
   (c)2016 by Christoph Stoettner
 
   Licence: Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html)
