@@ -6,8 +6,10 @@
 
   I needed this script for CCM, because after some hours accessing CCM wasn't
   possible.
-  
+
   Call this script with "db2 -tvf insertwasadmin.sql"
+
+  This will not work with Connections 5.5! Columns had changed with 5.5!
 
   --
 

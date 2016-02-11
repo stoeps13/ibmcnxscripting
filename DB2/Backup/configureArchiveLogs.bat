@@ -1,4 +1,4 @@
-@echo off 
+@echo off
 REM
 REM Author: Christoph Stoettner
 REM E-Mail: christoph.stoettner@stoeps.de
@@ -9,13 +9,24 @@ REM Needed for variable expansion
 SETLOCAL ENABLEDELAYEDEXPANSION
 REM Set Backup-Directory, change to your environment
 set DBLOGPATH=D:\db2\logs
+
+REM Check System Language
+FOR /F "tokens=3 delims= " %%G in ('reg query "hklm\system\controlset001\control\nls\language" /v Installlanguage') DO (
+IF [%%G] EQU [0409] (
+  ECHO English install language detected
+  set TOKEN=3
+) ELSE (
+  ECHO Some other language detected
+  set TOKEN=4
+)
+
 REM get all databases of db2 instance and loop through the list
-FOR /F "tokens=3 delims== " %%a IN ('DB2CMD.EXE -c -w -i DB2 list DATABASE DIRECTORY ^| findstr /i "Alias"') DO (
-				set DATABASES=%%a,!DATABASES!
-				title Starting database %%a Log configuration on %date% at %time%... 
-                REM DB2CMD.EXE -c -w -i DB2 UPDATE DATABASE CONFIGURATION FOR %%a using LOGARCHMETH1 LOGRETAIN AUTO_DEL_REC_OBJ ON num_db_backups 1 rec_his_retentn 0 logarchmeth1 disk:%DBLOGPATH%
-                DB2 UPDATE DATABASE CONFIGURATION FOR %%a using logarchmeth1 disk:%DBLOGPATH%
-                db2 update db cfg for %%a using AUTO_DEL_REC_OBJ ON
+FOR /F "tokens=%TOKEN% delims== " %%a IN ('DB2CMD.EXE -c -w -i DB2 list DATABASE DIRECTORY ^| findstr /i "Alias"') DO (
+		set DATABASES=%%a,!DATABASES!
+		title Starting database %%a Log configuration on %date% at %time%...
+        REM DB2CMD.EXE -c -w -i DB2 UPDATE DATABASE CONFIGURATION FOR %%a using LOGARCHMETH1 LOGRETAIN AUTO_DEL_REC_OBJ ON num_db_backups 1 rec_his_retentn 0 logarchmeth1 disk:%DBLOGPATH%
+        DB2 UPDATE DATABASE CONFIGURATION FOR %%a using logarchmeth1 disk:%DBLOGPATH%
+        db2 update db cfg for %%a using AUTO_DEL_REC_OBJ ON
  		db2 update db cfg for %%a using num_db_backups 2
  		db2 update db cfg for %%a using rec_his_retentn 0
  		db2 update db cfg for %%a using LOGARCHCOMPR1 on
