@@ -1,7 +1,7 @@
-Scripting IBM Connections
+Scripting ~~IBM~~ HCL Connections
 =========================
 
-This repository exists since [Social Connections V](http://socialconnections.info/social-connections-v/). I talked about the usage of scripts with WebSphere, ~~IBM~~HCL Connections and DB2.
+This repository exists since [Social Connections V](http://socialconnections.info/social-connections-v/). I talked about the usage of scripts with WebSphere, ~~IBM~~ HCL Connections and DB2.
 
 You're welcome to add your own snippets, scripts and ideas!
 
